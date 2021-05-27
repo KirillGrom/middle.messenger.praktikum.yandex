@@ -2,11 +2,13 @@ export  default  [
     {
         label:'Логин',
         type:'text',
-        value:''
+        value:'',
+        name:'login'
     },
     {
         label:'Пароль',
         type:'password',
-        value:''
+        value:'',
+        name:'password'
     },
 ]

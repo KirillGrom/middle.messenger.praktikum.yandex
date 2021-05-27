@@ -1,31 +1,17 @@
-export default `<div class=" profile-block {{class}}">
- <button class="profile-block__edit-avatar">
+export default `<div class=" profile-block  profile-edit {{class}}">
  {{avatar}}
- <span>Поменять аватар</span>
-</button>
- <h2 class="profile-block__name">{{name}}</h2>
  <div class="profile-block__info">
-  <ul class="profile-block__list">
+ <form action="" class="profile-edit__form" onsubmit="chat.form.submit(this);return false;">
        {{#each inputList}}
-      <li  class="profile-block__item">
+      <div  class="profile-block__item">
         <label class="profile-field">
             <span class="profile-field__name">{{label}}</span>
-            <input type="{{type}}" class="profile-field__input {{class}}"  value="{{value}}" disabled="{{disabled}}">
+            <input type="{{type}}"  name="{{name}}" class="profile-field__input {{class}}"  value="{{value}}" {{disabled}}">
         </label>
-      </li>
+      </div>
     {{/each}}
-</ul>
+<button class="button profile-edit__button">Сохранить</button>
+</form>
 </div>
-<ul class="profile-actions">
-<li class="profile-actions__item">
-<a href="" class="profile-actions__link">Изменить данные</a>
-</li>
-<li class="profile-actions__item">
-   <a href="" class="profile-actions__link" >Изменить пароль</a>
-</li>
-<li class="profile-actions__item">
-    <a href="" class="profile-actions__link  profile-actions__link--red ">Выйти</a>
-</li>
-</ul>
 
 </div>`

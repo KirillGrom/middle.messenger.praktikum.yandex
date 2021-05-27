@@ -12,10 +12,13 @@
     @include font(20,20);
   }
   &__button {
-    margin-top: 154px;
+    margin-top: 62px;
   }
   &__form {
     margin-bottom: 14px;
+    & .enter-field {
+      margin-bottom: 11px;
+    }
   }
   &__link {
     margin: auto;

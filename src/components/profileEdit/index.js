@@ -1,12 +1,12 @@
 import Handlebars from 'handlebars';
-import ProfileBlockTmpl from './profileBlock.tmpl';
-import ProfileBlockData from './profileBlock.data';
+import profileEditTmpl from './profileEdit.tmpl';
+import profileEditData from './profileEdit.data';
 
 
-const render = Handlebars.compile(ProfileBlockTmpl,{noEscape:true});
+const render = Handlebars.compile(profileEditTmpl,{noEscape:true});
 
 export default  {
     render,
-    template:ProfileBlockTmpl,
-    data: ProfileBlockData,
+    template:profileEditTmpl,
+    data: profileEditData,
 }

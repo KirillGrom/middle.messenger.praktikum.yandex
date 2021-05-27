@@ -10,8 +10,8 @@ const template = modal.render({
             id: modal.data.addUser.id,
             content: boxModal.render({
                 ...modal.data.addUser,
-                contentMain: enterField.render(''),
-                contentActions: ''
+                contentMain: enterField.render({name:'login',type:'text'}),
+                contentActions: `<button class="button">Добавить пользователя</button>`
             })
         },
         {
@@ -19,7 +19,7 @@ const template = modal.render({
             content: boxModal.render({
                 ...modal.data.removeUser,
                 contentMain: enterField.render(''),
-                contentActions: `<button class="button"></button>`
+                contentActions: `<button class="button">Удалить пользователя</button>`
             })
         },
         {
@@ -30,7 +30,7 @@ const template = modal.render({
                     contentLabel: 'Выбрать файл на компьютере',
                     name: 'avatar'
                 }),
-                contentActions: `<button class="button"></button>`
+                contentActions: `<button class="button">Поменять</button>`
             })
         },
         {
@@ -38,7 +38,7 @@ const template = modal.render({
             content: boxModal.render({
                 ...modal.data.removeChat,
                 contentMain: '',
-                contentActions: `<button class="button"></button>`
+                contentActions: `<button class="button">Удалить чат</button>`
             })
         }
     ]

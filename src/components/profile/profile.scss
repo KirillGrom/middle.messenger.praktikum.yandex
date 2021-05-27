@@ -1,0 +1,29 @@
+.profile {
+  display: flex;
+  height: 100%;
+  padding: 0 64px;
+  position: relative;
+  overflow:hidden;
+  &__link-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 64px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FBFBFB;
+    border-right: 1px solid $blue;
+    transition: background-color .3s;
+    &:hover {
+      background-color: $pink;
+    }
+  }
+  &__main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

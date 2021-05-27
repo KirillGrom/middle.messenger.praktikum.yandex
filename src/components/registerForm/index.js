@@ -1,12 +1,12 @@
 import Handlebars from 'handlebars';
-import registtationFormTmpl from './registtationForm.tmpl';
-import registtationFormData from './registtationForm.data';
+import registerFormTmpl from './registerForm.tmpl';
+import registerFormData from './registerForm.data';
 
 
-const render = Handlebars.compile(EnterFormTmpl,{noEscape:true})
+const render = Handlebars.compile(registerFormTmpl,{noEscape:true})
 
 export default {
     render,
-    template:EnterFormTmpl,
-    data:EnterFormData
+    template:registerFormTmpl,
+    data:registerFormData
 }

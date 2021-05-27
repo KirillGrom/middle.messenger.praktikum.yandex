@@ -3,7 +3,7 @@ import AvatarTmpl from './avatar.tmpl'
 
 const render = Handlebars.compile(AvatarTmpl,{ noEscape: true })
 
-export default  {
+export default {
     render,
     template:AvatarTmpl,
 }

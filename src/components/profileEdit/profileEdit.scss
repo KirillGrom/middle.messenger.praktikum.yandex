@@ -1,79 +1,11 @@
-.profile-block {
-  &__name {
-    @include font(16,16);
-    margin-bottom: 60px;
-    text-align: center;
+.profile-edit {
+  &__avatar {
+    margin: auto;
   }
-  &__list {
-    list-style: none;
+  &__button {
+    margin: 97px auto auto auto;
   }
-  &__item  {
-    width: 510px;
-  }
- &__info {
-   margin-bottom: 60px;
- }
- &__avatar {
-   margin: auto;
- }
-  &__edit-avatar {
-    position: relative;
-    display: block;
-    margin: auto auto 21px auto;
-    span {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      color: $white;
-      transition: opacity 0.3s;
-      border-radius:50% ;
-    }
-    &:hover {
-      span {
-      opacity: 1;
-        background-color: rgb($black,0.5);
-      }
-    }
-  }
-}
-
-
-.profile-field {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  @include font(13,13);
-  border-bottom: 1px solid $blue;
-  &__input {
-    border:none;
-    outline: none;
-    background-color:transparent;
-    text-align: right;
-    color: $gray;
-
-  }
-}
-
-.profile-actions {
-  list-style: none;
-  &__item {
-    margin-bottom: 21px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-  &__link {
-    @include font(13,13);
-    color: $dark-blue;
-    &--red {
-      color: $red;
-    }
+  &__form {
+    margin-top: 60px;
   }
 }

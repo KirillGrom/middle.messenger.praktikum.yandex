@@ -1,10 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap');
-@import './scss/mixins';
-@import './scss/variables';
-@import './scss/normalize';
-@import './scss/reset';
+@import 'style/scss/mixins';
+@import 'style/scss/variables';
+@import 'style/scss/normalize';
+@import 'style/scss/reset';
+@import 'style/scss/actions';
+@import 'style/scss/buttons';
 
-@import '../../src/components/chatItem/chatItem';
+
+// Components
+@import 'components/chatItem/chatItem';
+@import 'components/chatList/chatList';
+@import 'components/avatar/avatar';
+@import 'components/aside/aside';
+@import 'components/main/main';
+@import 'components/search/search';
+@import 'components/link/link';
+@import 'components/header/header';
+@import 'components/footer/footer';
+@import 'components/messages/messages';
+@import 'components/message/message';
+@import 'components/profile/profile';
+@import 'components/profileBlock/profileBlock';
+@import 'components/profileEdit/profileEdit';
+@import 'components/passwordEdit/passwordEdit';
+@import 'components/authForm/authForm';
+@import 'components/enterField/enterField';
+@import 'components/registerForm/registerForm';
+@import 'components/boxModal/boxModal';
+@import 'components/modal/modal';
+@import 'components/errorPage/errorPage';
+
+// Layout
+@import 'layout/layout';
 
 *,*:after,*:before {
   box-sizing: border-box;
@@ -24,5 +51,6 @@ body {
   width: 100%;
   height: 100%;
 }
+
 
 

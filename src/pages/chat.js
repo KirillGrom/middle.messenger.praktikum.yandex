@@ -1,7 +1,7 @@
 import layout from "../layout";
 import aside from "../components/aside";
 import main from "../components/main";
-import {renderInDOM} from "../utils/render";
+import {renderInDOM} from "../utils/renderInDOM";
 import chatList from "../components/chatList";
 import chatItem from "../components/chatItem";
 import avatar from "../components/avatar";
@@ -16,11 +16,12 @@ import message from "../components/message";
 const asideContentMain =  () => {
     return  chatList.render({
         contentList: chatList.data.contentList.map(data => {
+            const _href = `${data.href}?id=${data.id}`
             const avatarContent = avatar.render({
                 class:'chat-item__avatar',
                 imgSrc:data.imgSrc
             })
-            return chatItem.render({avatar:avatarContent,...data})
+            return chatItem.render({avatar:avatarContent,...data,href:_href})
         })
     })
 }
@@ -57,15 +58,13 @@ const messagesContent = () => {
       time:messages.data[0].date,
       class:'message-item__date-time'
   })
-  const compiledMessage =   messages.data[0].messages.reduce((acc,{type,text,time}) => {
-        acc.push(message.render({
+  const compiledMessage =   messages.data[0].messages.map(({type,text,time}) => {
+      return message.render({
             message: text,
             time,
             class: type === 'person' ? 'message-item--person' : 'message-item--my'
-        }))
-            return acc
-
-    },[]).join('')
+        })
+    }).join('')
 
     return  messages.render({content:[compiledDateTime,compiledMessage].join('')})
 }

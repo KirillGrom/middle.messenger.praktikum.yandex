@@ -1,5 +1,5 @@
 import layout from "../layout";
-import {renderInDOM} from "../utils/render";
+import {renderInDOM} from "../utils/renderInDOM";
 import registerForm from '../components/registerForm'
 import enterField from '../components/enterField'
 import link from '../components/link'

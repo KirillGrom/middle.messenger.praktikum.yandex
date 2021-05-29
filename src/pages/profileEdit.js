@@ -2,7 +2,7 @@ import layout from "../layout";
 import profile from "../components/profile";
 import profileEdit from "../components/profileEdit";
 import avatar from "../components/avatar";
-import {renderInDOM} from "../utils/render";
+import {renderInDOM} from "../utils/renderInDOM";
 
 
 const profileEditRender = () => {

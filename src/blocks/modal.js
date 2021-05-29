@@ -2,7 +2,7 @@ import modal from "../components/modal";
 import boxModal from "../components/boxModal";
 import enterField from "../components/enterField";
 import inputUploadFile from "../components/inputUploadFile";
-import {renderInDOM} from "../utils/render";
+import {renderInDOM} from "../utils/renderInDOM";
 
 const template = modal.render({
     contentList: [

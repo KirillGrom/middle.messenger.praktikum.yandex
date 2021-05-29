@@ -1,6 +1,6 @@
 import errorPage from '../components/errorPage'
 import layout from "../layout";
-import {renderInDOM} from "../utils/render";
+import {renderInDOM} from "../utils/renderInDOM";
 
 
 

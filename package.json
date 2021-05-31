@@ -1,0 +1,43 @@
+{
+  "name": "middle.messenger.praktikum.yandex",
+  "version": "1.0.0",
+  "description": "Самостоятельный проект веб-чата",
+  "main": "src/index.js",
+  "devDependencies": {
+    "express": "^4.17.1",
+    "handlebars": "^4.7.7",
+    "parcel-bundler": "^1.12.5",
+    "parcel-plugin-custom-dist-structure": "^1.1.17",
+    "parcel-plugin-static-files-copy": "^2.6.0",
+    "sass": "^1.32.8"
+  },
+  "scripts": {
+    "start": "npm run clear && parcel build ./static/*.html --no-source-maps --no-cache --public-url ./ && node ./server.js",
+    "dev": "npm run clear && parcel ./static/*.html --port 3000",
+    "build": "npm run clear && parcel build ./static/*.html --no-source-maps --no-cache --public-url ./",
+    "clear": "rm -rf dist .cache"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KirillGrom/middle.messenger.praktikum.yandex.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KirillGrom/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/KirillGrom/middle.messenger.praktikum.yandex#readme",
+  "staticFiles": {
+    "staticPath": "static",
+    "watcherGlob": "**"
+  },
+  "customDistStructure": {
+    "config": {
+      ".css": "css",
+      ".js": "js"
+    },
+    "options": {
+      "development": true
+    }
+  }
+}

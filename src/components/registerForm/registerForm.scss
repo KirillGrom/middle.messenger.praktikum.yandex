@@ -1,0 +1,26 @@
+.enter-form {
+  display: flex;
+  flex-direction: column;
+  width: 340px;
+  padding: 50px 30px 30px 30px;
+  background: linear-gradient(180deg, #E5F7FF 0%, #F2FBFF 56.77%, #FFFFFF 100%);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+  border-radius: 12px;
+  &__title {
+    margin-bottom: 38px;
+    text-align: center;
+    @include font(20,20);
+  }
+  &__button {
+    margin-top: 62px;
+  }
+  &__form {
+    margin-bottom: 14px;
+    & .enter-field {
+      margin-bottom: 11px;
+    }
+  }
+  &__link {
+    margin: auto;
+  }
+}

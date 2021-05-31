@@ -1,0 +1,16 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  padding: 19px 24px 16px  24px;
+  &__empty-messages {
+    margin: auto;
+    @include font(12,12);
+    color: $gray;
+  }
+  .main__header {
+    width: 100%;
+  }
+  &__footer {
+    margin-top: auto;
+  }
+}

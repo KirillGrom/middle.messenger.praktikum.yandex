@@ -1,0 +1,15 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 280px;
+  height: 37px;
+  @include font(13,13);
+  color: $white;
+  border-radius: 8px;
+  background: linear-gradient(96.56deg, rgba(218, 90, 250, 0.73) 15.82%, rgba(136, 101, 243, 0.73) 44.42%, rgba(53, 112, 236, 0.73) 69.84%);
+  &__circle {
+    border-radius: 50%;
+    background: linear-gradient(131.92deg, #DA5AFA 23.63%, #8865F3 47.29%, #3570EC 77.86%);
+  }
+}

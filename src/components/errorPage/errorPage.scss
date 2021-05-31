@@ -1,0 +1,12 @@
+.error-page {
+  margin: auto;
+  text-align: center;
+  @include font(20,20);
+  &__code {
+    margin-bottom: 20px;
+    @include font(40,40);
+  }
+  &__text {
+    margin-bottom: 69px;
+  }
+}

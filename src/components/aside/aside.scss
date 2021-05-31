@@ -1,0 +1,14 @@
+.aside {
+  padding: 14px 10px;
+  background: linear-gradient(180deg, rgba(229, 247, 255, 0.6) 0%, rgba(230, 247, 255, 0.6) 98.79%, rgba(255, 255, 255, 0.6) 100%);
+  &__top {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-bottom: 14px;
+  }
+&__link {
+  margin-left: auto;
+  margin-bottom:19px;
+}
+}

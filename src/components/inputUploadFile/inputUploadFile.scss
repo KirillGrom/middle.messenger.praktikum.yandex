@@ -1,0 +1,16 @@
+.input-upload-file {
+  display: block;
+  width: 125px;
+  @include font(14, 16);
+  cursor: pointer;
+  text-align: center;
+
+  &__label {
+    text-decoration: underline;
+    color: $accent;
+  }
+
+  &__name {
+    color: $gray
+  }
+}

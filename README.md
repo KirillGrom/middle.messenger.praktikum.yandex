@@ -4,7 +4,7 @@ UI проекта  https://www.figma.com/file/vDGdT1VRLSwmKMx7cTFX1m/ya-msg?node
 
 NETLIFY https://serene-goldstine-4b101a.netlify.app/
 
-PULL REQUEST https://github.com/KirillGrom/middle.messenger.praktikum.yandex/pull/2
+PULL REQUEST https://github.com/KirillGrom/middle.messenger.praktikum.yandex/pull/3
 
 
 Sprint 1

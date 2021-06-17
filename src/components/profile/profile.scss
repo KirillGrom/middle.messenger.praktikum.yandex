@@ -3,7 +3,8 @@
   height: 100%;
   padding: 0 64px;
   position: relative;
-  overflow:hidden;
+  overflow: hidden;
+
   &__link-back {
     position: absolute;
     top: 0;
@@ -13,13 +14,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #FBFBFB;
+    background-color: #fbfbfb;
     border-right: 1px solid $blue;
-    transition: background-color .3s;
+    transition: background-color 0.3s;
+
     &:hover {
       background-color: $pink;
     }
   }
+
   &__main {
     width: 100%;
     display: flex;

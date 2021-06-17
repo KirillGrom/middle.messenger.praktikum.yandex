@@ -6,7 +6,6 @@
 @import 'style/scss/actions';
 @import 'style/scss/buttons';
 
-
 // Components
 @import 'components/chatItem/chatItem';
 @import 'components/chatList/chatList';
@@ -22,7 +21,6 @@
 @import 'components/profile/profile';
 @import 'components/profileBlock/profileBlock';
 @import 'components/profileEdit/profileEdit';
-@import 'components/passwordEdit/passwordEdit';
 @import 'components/authForm/authForm';
 @import 'components/enterField/enterField';
 @import 'components/registerForm/registerForm';
@@ -33,7 +31,9 @@
 // Layout
 @import 'layout/layout';
 
-*,*:after,*:before {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
 }
 
@@ -51,6 +51,3 @@ body {
   width: 100%;
   height: 100%;
 }
-
-
-

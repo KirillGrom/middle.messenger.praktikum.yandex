@@ -9,14 +9,11 @@
 
   &__title {
     margin-bottom: 50px;
+
     @include font(16, 20);
 
     &--error {
       color: $red;
-    }
-
-    & + .box-modal__actions {
-      margin-top: 0;
     }
   }
 
@@ -27,7 +24,9 @@
 
   &__error {
     display: block;
+
     @include font(12, 12);
+
     padding: 14px 0 0;
     color: $red;
     text-align: center;

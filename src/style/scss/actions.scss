@@ -2,17 +2,33 @@
   position: relative;
   width: 32px;
   height: 32px;
-  &:hover {
-    .actions__wrapper {
-      opacity: 1;
-      pointer-events: auto;
+
+  &__item {
+    margin-bottom: 16px;
+
+    @include font(12,14);
+
+    cursor: pointer;
+    transition: color 0.3s;
+
+    &:last-child {
+      margin-bottom: 0;
     }
-    .actions__button {
-      svg {
-        fill: $dark-blue;
-      }
+
+    &:hover {
+      color: $dark-blue;
+    }
+
+    svg {
+      margin-right: 15px;
+    }
+
+    button {
+      display: flex;
+      align-items: center;
     }
   }
+
   &__button {
     display: flex;
     width: 100%;
@@ -20,11 +36,18 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+
     svg {
       fill: $blue;
     }
-
   }
+
+  .actions__button {
+    svg {
+      fill: $dark-blue;
+    }
+  }
+
   &__wrapper {
     display: block;
     position: absolute;
@@ -34,32 +57,21 @@
     width: 210px;
     opacity: 0;
     pointer-events: none;
-    transition: opacity .3s;
+    transition: opacity 0.3s;
   }
+
+  &:hover {
+    .actions__wrapper {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
   &__list {
     padding: 15px;
     background-color: $white;
     border-radius: 12px;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
     list-style: none;
-  }
-  &__item {
-    margin-bottom: 16px;
-    @include font(12,14);
-    cursor: pointer;
-    transition: color .3s;
-    &:last-child {
-      margin-bottom: 0;
-    }
-    &:hover {
-      color: $dark-blue;
-    }
-    button {
-      display: flex;
-      align-items: center;
-      svg {
-        margin-right: 15px;
-      }
-    }
   }
 }

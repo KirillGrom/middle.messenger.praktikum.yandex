@@ -20,9 +20,9 @@
   "scripts": {
     "start": "npm run clear && parcel build ./static/*.html --no-source-maps --no-cache --public-url ./ && node ./server.js",
     "dev": "npm run clear && parcel ./static/*.html --port 3000",
-    "build": "npm run clear && parcel build ./static/*.html --no-source-maps --no-cache --public-url ./",
+    "build": "npm run clear && parcel build ./static/*.html --no-source-maps --no-cache --no-minify --public-url ./",
     "clear": "rm -rf dist .cache",
-    "lint": "slint --fix --ext .ts, --ignore-path .gitignore . && stylelint \"**/*.scss\"  --config .stylelintrc.json"
+    "lint": "slint --fix --ext .ts, --ignore-path .gitignore . && stylelint \"**/*.scss\" --fix --config .stylelintrc.json"
   },
   "repository": {
     "type": "git",

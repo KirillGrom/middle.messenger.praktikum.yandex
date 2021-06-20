@@ -1,29 +1,36 @@
-
 import MessagesTmpl from './messages.tmpl';
 import Block from '../../modules/Block';
 import Message from '../message';
-import parseTmpl from '../../utils/parseTmpl';
 import {MessagesType} from './messages.type';
 
 export default class Messages extends Block {
 	constructor(props: MessagesType) {
-		super(MessagesTmpl, props);
-	}
-
-	render(): string {
-		this.components = {
-			message: this.props.messages.reduce((acc, data) => {
+		const components = {
+			messages: props.messages.reduce((acc, data) => {
 				const date = new Message({
 					isDataTime: true,
 					time: data.date,
-					class: 'message-item__date-time',
+					class: ['message-item', 'message-item__date-time'],
 				});
-				return [...acc, date, ...data.messages.map(({text, time, type}) => new Message({message: text, time, class: type === 'person' ? 'message-item--person' : 'message-item--my'}))];
+				const messages = data.messages.map(({text, time, type}) => new Message({
+					message: text,
+					time,
+					class: ['message-item', type === 'person' ? 'message-item--person' : 'message-item--my'],
+				}));
+
+				return [...acc, date, ...messages];
 			}, []),
 		};
-		this.source = parseTmpl.call(this);
-		const ctx = this._compile();
-		return ctx(this.props);
+		super('div', {...props, components});
+	}
+
+	render(): HTMLElement {
+		return this._compile(MessagesTmpl)({
+			...this.props,
+			components: {
+				messages: this.props.components.messages.map((msg: { getContent: () => HTMLElement; }) => msg.getContent()),
+			},
+		});
 	}
 }
 

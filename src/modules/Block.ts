@@ -2,38 +2,37 @@
 import Handlebars from 'handlebars';
 // @ts-ignore
 import {v4 as makeUUID} from 'uuid';
-
 import EventBus from './EventBus';
-
-	enum EVENTS {
-	INIT = 'init',
-	FLOW_CDM = 'flow:component-did-mount',
-	FLOW_RENDER ='flow:render',
-	FLOW_CDU ='flow:component-did-update',
-	}
+import {BlockType} from '../types/block.type';
 
 	type metaType = {
-	source:string;
-	template: string
+		tagName: string
+		props:any
 	}
-
 export default class Block {
-	private _meta:metaType;
-	readonly _id = null;
-	protected props:Object
-	private eventBus = () => new EventBus()
-	public components = {};
+	static EVENTS = {
+		INIT: 'init',
+		FLOW_CDM: 'flow:component-did-mount',
+		FLOW_CDU: 'flow:component-did-update',
+		FLOW_RENDER: 'flow:render',
+	};
+
+	eventBus: () => EventBus;
+	_element: HTMLElement;
+	_meta:metaType;
+	_id:string;
+	props:any;
 	/** JSDoc
-	 * @param {string} source
+	 * @param {string} tagName
 	 * @param {Object} props
 	 *
 	 * @returns {void}
 	 */
-	constructor(source: string = '', props:Object = {}) {
+	constructor(tagName:string, props:BlockType): void {
 		const eventBus = new EventBus();
 		this._meta = {
-			source,
-			template: source,
+			tagName,
+			props,
 		};
 
 		this._id = makeUUID();
@@ -42,44 +41,73 @@ export default class Block {
 		this.eventBus = () => eventBus;
 
 		this._registerEvents(eventBus);
-		eventBus.emit(EVENTS.INIT);
+		eventBus.emit(Block.EVENTS.INIT);
 	}
 
-	_registerEvents(eventBus: EventBus) {
-		eventBus.on(EVENTS.INIT, this.init.bind(this));
-		eventBus.on(EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-		eventBus.on(EVENTS.FLOW_RENDER, this.render.bind(this));
-		eventBus.on(EVENTS.FLOW_CDU, this.componentDidUpdate.bind(this));
+	_registerEvents(eventBus:EventBus) {
+		eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
+		eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+		eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+		eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+	}
+
+	_createResources() {
+		const {tagName} = this._meta;
+		this._element = this._createDocumentElement(tagName);
+	}
+
+	_compile(tmpl:string):Function {
+		return (props:any) => {
+			const compid = Handlebars.compile(tmpl, {noEscape: true})(props);
+			const _element = new DOMParser().parseFromString(compid, 'text/html').body.children[0];
+			if (props.components && _element) {
+				for (const [key, instance] of Object.entries(props.components)) {
+					const customTags = _element.querySelectorAll(`[data-component='${key}']`)[0];
+					if (!customTags) {
+						return _element;
+					}
+
+					if (Array.isArray(instance)) {
+						instance.forEach(elm => customTags.insertAdjacentElement('beforebegin', elm));
+					} else {
+						customTags.insertAdjacentElement('beforebegin', instance as HTMLElement);
+					}
+
+					try {
+						_element.removeChild(customTags);
+					} catch (e) {
+
+					}
+				}
+			}
+
+			return _element;
+		};
 	}
 
 	init() {
-		this.eventBus().emit(EVENTS.FLOW_CDM);
+		this._createResources();
+		this.eventBus().emit(Block.EVENTS.FLOW_CDM);
 	}
 
 	_componentDidMount() {
-		this.eventBus().emit(EVENTS.FLOW_RENDER);
+		this.componentDidMount();
+		this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
 	}
 
-	_componentDidUpdate<T>(oldProps:T, newProps:T):void {
-		const response = this.isComponentDidUpdate(oldProps, newProps);
-		if (response) {
-			this.eventBus().emit(EVENTS.FLOW_CDU);
+	_componentDidUpdate<T>(oldProps:T, newProps:T) {
+		const response = this.componentDidUpdate(oldProps, newProps);
+		if (!response) {
+			return;
 		}
+
+		this._render();
 	}
 
-	componentDidUpdate():void {
-		const _element = this.getContent();
-		if (_element) {
-			const _parent = _element.parentNode;
-			const _newElement = new DOMParser().parseFromString(this.render(), 'text/html').body.firstChild;
-			if (_parent && _newElement) {
-				_parent.replaceChild(_newElement, _element);
-			}
-		}
-	}
+	componentDidMount() {}
 
-	isComponentDidUpdate<T>(oldProps:T, newProps:T):boolean {
-		return JSON.stringify(oldProps) !== JSON.stringify(newProps);
+	componentDidUpdate<T>(oldProps:T, newProps:T):boolean {
+		return true;
 	}
 
 	setProps = (nextProps:Object) => {
@@ -87,39 +115,31 @@ export default class Block {
 			return;
 		}
 
-		// @ts-ignore
 		Object.assign(this.props, nextProps);
 	};
 
-	get source() {
-		return this._meta.source;
+	get element() {
+		return this._element;
 	}
 
-	set source(value:string) {
-		this._meta.source = value;
+	_render() {
+		const block = this.render();
+		this._element.insertAdjacentElement('afterbegin', block);
+		this._removeEvents();
+		this._addEvents();
 	}
 
-	get template() {
-		return this._meta.template;
+	render():HTMLElement {
+		return document.createElement('div');
 	}
 
-	render():string {
-		const template = this._compile();
-		return template(this.props);
-	}
-
-	_compile() {
-		return Handlebars.compile(this.source, {noEscape: true});
-	}
-
-	getContent(): HTMLElement | null {
-		return document.querySelector(`[data-id='${this._id}']`);
+	getContent() {
+		return this.element;
 	}
 
 	_makePropsProxy(props:Object):Object {
 		const self = this;
 		const oldProps = JSON.parse(JSON.stringify(props));
-		// @ts-ignore
 		return new Proxy(props, {
 			get(target:Record<string, any>, prop:string) {
 				const value = target[prop];
@@ -136,17 +156,36 @@ export default class Block {
 		});
 	}
 
-	show():void {
-		const _element = this.getContent();
-		if (_element) {
-			_element.style.display = 'block';
+	_createDocumentElement(tagName:string):HTMLElement {
+		const element = document.createElement(tagName);
+		element.classList.add(...this.props.class);
+		element.setAttribute('data-id', this._id);
+		if (this.props.href) {
+			element.setAttribute('href', this.props.href);
 		}
+
+		return element;
 	}
 
-	hide():void {
-		const _element = this.getContent();
-		if (_element) {
-			_element.style.display = 'none';
-		}
+	_addEvents() {
+		const {events = {}} = this.props;
+		Object.keys(events).forEach(eventName => {
+			this._element.addEventListener('click', events[eventName]);
+		});
+	}
+
+	_removeEvents() {
+		const {events = {}} = this.props;
+		Object.keys(events).forEach(eventName => {
+			this._element.removeEventListener(eventName, events[eventName]);
+		});
+	}
+
+	show() {
+		this.getContent().style.display = 'block';
+	}
+
+	hide() {
+		this.getContent().style.display = 'none';
 	}
 }

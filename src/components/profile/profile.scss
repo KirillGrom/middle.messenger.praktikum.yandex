@@ -1,10 +1,6 @@
 .profile {
-  display: flex;
+  width: 100%;
   height: 100%;
-  padding: 0 64px;
-  position: relative;
-  overflow: hidden;
-
   &__link-back {
     position: absolute;
     top: 0;
@@ -22,11 +18,19 @@
       background-color: $pink;
     }
   }
-
+  &__wrapper  {
+    display: flex;
+    height: 100%;
+    padding: 0 64px;
+    position: relative;
+    overflow: hidden;
+  }
   &__main {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 100%;
+    //width: 100%;
+    //display: flex;
+    //justify-content: center;
+    //align-items: center;
   }
 }

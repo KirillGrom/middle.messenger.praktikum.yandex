@@ -3,6 +3,12 @@
   align-items: center;
   border-top: 1px solid $blue;
   padding: 16px 86px 16px 16px;
+
+  &__wrapper  {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
 }
 
 .actions-footer {
@@ -22,6 +28,12 @@
   flex-grow: 1;
 
   &__form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__wrapper {
     width: 100%;
     display: flex;
     align-items: center;

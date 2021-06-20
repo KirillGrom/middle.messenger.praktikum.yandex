@@ -4,4 +4,5 @@ export type ProfileBlockType = {
     imgSrc:string;
     name:string;
     inputList: ProfileFieldType[];
+    class:string[];
 }

@@ -1,4 +1,3 @@
-
 import {ProfileFieldType} from '../../types/profileField.type';
 
 export type ProfileType = {
@@ -6,6 +5,7 @@ export type ProfileType = {
     href: string;
     isEdit:boolean;
     name?:string;
-    inputList: ProfileFieldType[]
+    inputList: ProfileFieldType[];
+    class:string[];
 }
 

@@ -1,3 +1,5 @@
-export default `<div class="layout layout--{{type}}">
-<v-error/>
-</div>`.trim();
+export default `
+<div class="layout layout--error">
+	<div data-component="error"></div>
+</div>
+`.trim();

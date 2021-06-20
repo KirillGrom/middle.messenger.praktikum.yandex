@@ -3,24 +3,47 @@ import {renderInDOM} from '../../utils/renderInDOM';
 import Block from '../../modules/Block';
 import RegisterForm from '../../components/registerForm';
 import registerFormData from '../../components/registerForm/registerForm.data';
-import parseTmpl from '../../utils/parseTmpl';
-import {pageEnum, PageType} from '../../types/page.type';
+import {BlockType} from '../../types/block.type';
+import Link from '../../components/link';
+import Form from '../../modules/form';
 
 export default class Registration extends Block {
-	constructor(props: PageType) {
-		super(registrationTmpl, props);
-	}
-
-	render(): string {
-		this.components = {
+	constructor(props: BlockType) {
+		const formService = new Form();
+		const components = {
 			registerForm: new RegisterForm({
 				enterFields: registerFormData,
+				class: ['enter-form__form'],
+				events: {
+					focusout: (event:Event) => {
+						formService.inputEventHandler(event);
+					},
+					focusin: (event:Event) => {
+						formService.inputEventHandler(event);
+					},
+					submit: (event:Event) => {
+						formService.submit(event.currentTarget as HTMLFormElement);
+					},
+				},
+			}),
+			link: new Link({
+				href: '/login.html',
+				class: ['link', 'link--blue', 'enter-form__link'],
+				linkName: 'Войти',
 			}),
 		};
-		this.source = parseTmpl.call(this);
-		const ctx = this._compile();
-		return ctx(this.props);
+		super('div', {...props, components});
+	}
+
+	render(): HTMLElement {
+		return this._compile(registrationTmpl)({
+			...this.props,
+			components: {
+				registerForm: this.props.components.registerForm.getContent(),
+				link: this.props.components.link.getContent(),
+			},
+		});
 	}
 }
 
-renderInDOM(document.querySelector('#app'), new Registration({type: pageEnum.enter}).render());
+renderInDOM(document.querySelector('#app'), new Registration({class: ['wrapper']}).getContent());

@@ -1,3 +1,4 @@
 export type SearchType = {
-    text:string
+    text:string;
+    class:string[];
 }

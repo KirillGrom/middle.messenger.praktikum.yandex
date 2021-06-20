@@ -5,6 +5,7 @@ export default [
 		value: '',
 		name: 'email',
 		errorText: 'Не верный формат "Почта"',
+		class: ['enter-field'],
 	},
 	{
 		label: 'Логин',
@@ -12,6 +13,7 @@ export default [
 		value: '',
 		name: 'login',
 		errorText: 'Пустая строка "Логин" недопустима',
+		class: ['enter-field'],
 	},
 	{
 		label: 'Имя',
@@ -19,6 +21,7 @@ export default [
 		value: '',
 		name: 'first_name',
 		errorText: 'Пустая строка "Имя" недопустима',
+		class: ['enter-field'],
 	},
 	{
 		label: 'Фамилия',
@@ -26,6 +29,7 @@ export default [
 		value: '',
 		name: 'second_name',
 		errorText: 'Пустая строка "Фамилия" недопустима',
+		class: ['enter-field'],
 	},
 	{
 		label: 'Телефон',
@@ -33,6 +37,7 @@ export default [
 		value: '',
 		name: 'phone',
 		errorText: 'Не верный формат "Телефон"',
+		class: ['enter-field'],
 	},
 	{
 		label: 'Пароль',
@@ -40,6 +45,7 @@ export default [
 		value: '',
 		name: 'password',
 		errorText: 'Пароль должен быть минимум 6 символов и содержать буквы и цифры',
+		class: ['enter-field'],
 	},
 	{
 		label: 'Пароль (еще раз)',
@@ -47,5 +53,6 @@ export default [
 		value: '',
 		name: 'password_confirm',
 		errorText: 'Не  совпадает с "Пароль"',
+		class: ['enter-field'],
 	},
 ];

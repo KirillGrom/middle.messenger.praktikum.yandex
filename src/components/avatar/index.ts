@@ -4,7 +4,11 @@ import {AvatarType} from './avatar.type';
 
 export default class Avatar extends Block {
 	constructor(props:AvatarType) {
-		super(AvatarTmpl, props);
+		super('div', props);
+	}
+
+	render():HTMLElement {
+		return this._compile(AvatarTmpl)(this.props);
 	}
 }
 

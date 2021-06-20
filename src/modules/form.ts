@@ -1,17 +1,12 @@
-
 export default class Form {
-	constructor() {
-		this.init();
-	}
-
-	public submit(form:HTMLFormElement):void {
+	public submit(targetElement:HTMLFormElement):void {
 		let isValid = false;
-		if (!form.elements) {
+		if (!targetElement.elements) {
 			return;
 		}
 
 		const acc: Record<string, string> = {};
-		const resultObject = Array.from(form.elements).reduce((acc, item:HTMLFormElement) => {
+		const resultObject = Array.from(targetElement.elements).reduce((acc, item:HTMLFormElement) => {
 			const attributeName:string | null = item.getAttribute('name');
 			if (attributeName) {
 				acc[attributeName] = item.value;
@@ -85,31 +80,12 @@ export default class Form {
 		}
 	}
 
-	private inputEventHandler(event:Event):void {
+	public inputEventHandler(event:Event):void {
 		event.preventDefault();
 		if (this.checkInputValidated((event.target as HTMLFormElement))) {
 			this.toggleErrorClass(event.target as HTMLFormElement, true);
 		} else {
 			this.toggleErrorClass(event.target as HTMLFormElement, false);
-		}
-	}
-
-	private init():void {
-		const _elements = document.getElementsByTagName('form');
-		if (_elements) {
-			Array.from(_elements).forEach(_element => {
-				_element.addEventListener('submit', e => {
-					e.preventDefault();
-					this.submit(e.target as HTMLFormElement);
-				});
-				_element.addEventListener('focusin', e => this.inputEventHandler(e));
-				_element.addEventListener('focusout', e => this.inputEventHandler(e));
-
-				const _inputFile = _element.querySelector('input[type="file"]');
-				if (_inputFile) {
-					_inputFile.addEventListener('change', e => this.changeInputFile(e.target as HTMLFormElement));
-				}
-			});
 		}
 	}
 }

@@ -1,4 +1,5 @@
 export type ErrorPageType = {
-    code: string,
-    text: string,
+    code: string;
+    text: string;
+    class:string[];
 }

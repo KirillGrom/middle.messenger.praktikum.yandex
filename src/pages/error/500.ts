@@ -1,26 +1,28 @@
 import errorTmpl from './error.tmpl';
-import layoutData from '../../layout/layout.data';
 import {renderInDOM} from '../../utils/renderInDOM';
 import Block from '../../modules/Block';
+import {BlockType} from '../../types/block.type';
 import ErrorPage from '../../components/errorPage';
-import parseTmpl from '../../utils/parseTmpl';
-import {pageEnum, PageType} from '../../types/page.type';
 
 export default class Page500 extends Block {
-	constructor(props: PageType) {
-		super(errorTmpl, props);
-	}
-
-	render(): string {
-		this.components = {
+	constructor(props: BlockType) {
+		const components = {
 			error: new ErrorPage({
-				code: '500',
 				text: 'Мы уже фиксим',
+				code: '500',
+				class: ['error-page'],
 			}),
 		};
-		this.source = parseTmpl.call(this);
-		const ctx = this._compile();
-		return ctx(this.props);
+		super('div', {...props, components});
+	}
+
+	render(): HTMLElement {
+		return this._compile(errorTmpl)({
+			...this.props,
+			components: {
+				error: this.props.components.error.getContent(),
+			},
+		});
 	}
 }
-renderInDOM(document.querySelector('#app'), new Page500({type: pageEnum.error}).render());
+renderInDOM(document.querySelector('#app'), new Page500({class: ['wrapper']}).getContent());

@@ -1,5 +1,5 @@
 export default `
-  <ul class="chat-list">
-     <v-chatItems/>
-  </ul>
+	<ul class="chat-list">
+		<div data-component="chatItems"></div>
+	</ul>
 `.trim();

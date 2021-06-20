@@ -1,4 +1,5 @@
 export type HeaderType = {
-    name: string,
-    imgSrc: string,
+    name: string;
+    imgSrc: string;
+    class: string[];
 }

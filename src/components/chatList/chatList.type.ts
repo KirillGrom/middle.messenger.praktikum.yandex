@@ -1,5 +1,6 @@
 import {chatItemType} from '../chatItem/chatItem.type';
 
 export type ChatListType = {
-    chatItems:chatItemType[]
+    chatItems:chatItemType[];
+    class:string[];
 }

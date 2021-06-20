@@ -1,9 +1,11 @@
-export default `<aside class="aside {{class}}">
-<div class="aside__top">
-  <v-link/>
-  <v-search/>
-</div>
-<div class="aside__content">
-  <v-chatList/>
-</div>
-</aside>`;
+export default `
+	<div class="aside__wrapper">
+		<div class="aside__top">
+			<div data-component="link"></div>
+			<div data-component="search"></div>
+		</div>
+		<div class="aside__content">
+			<div data-component="chatList"></div>
+		</div>
+	</div>
+`.trim();

@@ -3,4 +3,5 @@ export type ProfileFieldType = {
     type: string;
     disabled?: boolean;
     value: string;
+    name: string;
 }

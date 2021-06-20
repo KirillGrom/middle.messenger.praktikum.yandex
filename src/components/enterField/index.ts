@@ -4,11 +4,10 @@ import {FieldType} from '../../types/field.type';
 
 export default class EnterField extends Block {
 	constructor(props:FieldType) {
-		super(enterFieldTmpl, props);
+		super('div', props);
 	}
 
-	render(): string {
-		const ctx = this._compile();
-		return ctx(this.props);
+	render():HTMLElement {
+		return this._compile(enterFieldTmpl)(this.props);
 	}
 }

@@ -1,0 +1,7 @@
+.form-message{
+  &__wrapper.error {
+    .form-message__textarea {
+      border:1px solid $red;
+    }
+  }
+}

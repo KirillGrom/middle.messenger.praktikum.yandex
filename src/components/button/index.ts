@@ -3,13 +3,11 @@ import buttonTmpl from './button.tmpl';
 import {ButtonType} from './button.type';
 
 export default class Button extends Block {
-	props:ButtonType
 	constructor(props:ButtonType) {
-		super(buttonTmpl, props);
+		super('div', props);
 	}
 
-	render(): string {
-		const ctx = this._compile();
-		return ctx(this.props);
+	render(): HTMLFormElement {
+		return this._compile(buttonTmpl)(this.props);
 	}
 }

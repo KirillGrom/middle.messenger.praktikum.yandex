@@ -1,5 +1,5 @@
 export type LinkType = {
     href: string,
-    class: string,
+    class:string[],
     linkName: string,
 }

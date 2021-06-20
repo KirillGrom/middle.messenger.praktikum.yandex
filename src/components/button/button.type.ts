@@ -1,4 +1,4 @@
 export type ButtonType = {
-    class: string;
+    class: string[];
     text: string;
 }

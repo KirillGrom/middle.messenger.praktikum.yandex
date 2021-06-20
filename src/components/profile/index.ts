@@ -1,26 +1,36 @@
 import ProfileTmpl from './profile.tmpl';
 import Block from '../../modules/Block';
-import parseTmpl from '../../utils/parseTmpl';
 import ProfileBlock from '../profileBlock';
 import ProfileEdit from '../profileEdit';
 import {ProfileType} from './profile.type';
 
 export default class Profile extends Block {
-	props:ProfileType;
 	constructor(props:ProfileType) {
-		super(ProfileTmpl, props);
+		const name = props.name ? props.name : '';
+		const components = {
+			profileEdit: new ProfileEdit({
+				imgSrc: props.imgSrc,
+				name,
+				inputList: props.inputList,
+				class: ['profile-block', 'profile-edit']}),
+
+			profileBlock: new ProfileBlock({
+				imgSrc: props.imgSrc,
+				name: props.name ? props.name : '',
+				inputList: props.inputList, class: ['profile-block']}),
+		};
+		super('div', {...props, components});
 	}
 
-	render(): string {
-		const name = this.props.name ? this.props.name : '';
-		const profileBlock = this.props.isEdit
-			? new ProfileEdit({imgSrc: this.props.imgSrc, name, inputList: this.props.inputList})
-			: new ProfileBlock({imgSrc: this.props.imgSrc, name: this.props.name ? this.props.name : '', inputList: this.props.inputList});
-		this.components = {
-			profileBlock,
-		};
-		this.source = parseTmpl.call(this);
-		const ctx = this._compile();
-		return ctx(this.props);
+	render(): HTMLElement {
+		return this._compile(ProfileTmpl)({
+			...this.props,
+			components: {
+				profileBlock: this.props.isEdit
+					? this.props.components.profileEdit.getContent()
+					: this.props.components.profileBlock.getContent(),
+			},
+
+		});
 	}
 }

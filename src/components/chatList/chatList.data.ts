@@ -9,6 +9,7 @@ export default {
 			lastMessageText: 'Изображение',
 			countNewMessage: '2',
 			isCountNewMessageHidden: false,
+			class: ['chat-list__item'],
 		},
 		{
 			id: '2',
@@ -19,6 +20,7 @@ export default {
 			lastMessageText: 'Изображение',
 			countNewMessage: '10',
 			isCountNewMessageHidden: true,
+			class: ['chat-list__item'],
 		},
 		{
 			id: '3',
@@ -29,6 +31,7 @@ export default {
 			lastMessageText: 'Изображение',
 			countNewMessage: '10',
 			isCountNewMessageHidden: false,
+			class: ['chat-list__item'],
 		},
 		{
 			id: '4',
@@ -39,6 +42,7 @@ export default {
 			lastMessageText: 'Изображение',
 			countNewMessage: '6',
 			isCountNewMessageHidden: false,
+			class: ['chat-list__item'],
 		},
 		{
 			id: '5',
@@ -49,6 +53,7 @@ export default {
 			lastMessageText: 'Изображение',
 			countNewMessage: '10',
 			isCountNewMessageHidden: true,
+			class: ['chat-list__item'],
 		},
 	],
 };

@@ -1,23 +1,25 @@
 import Block from '../../modules/Block';
 import headerTmpl from './header.tmpl';
 import Avatar from '../avatar';
-import parseTmpl from '../../utils/parseTmpl';
 import {HeaderType} from './header.type';
 
 export default class Header extends Block {
-	constructor(prop:HeaderType) {
-		super(headerTmpl, prop);
-	}
-
-	render():string {
-		this.components = {
+	constructor(props:HeaderType) {
+		const components = {
 			avatar: new Avatar({
-				class: 'header__avatar',
-				imgSrc: this.props.imgSrc,
+				imgSrc: props.imgSrc,
+				class: ['avatar', 'header__avatar'],
 			}),
 		};
-		this.source = parseTmpl.call(this);
-		const ctx = this._compile();
-		return ctx(this.props);
+		super('header', {...props, components});
+	}
+
+	render() {
+		return this._compile(headerTmpl)({
+			...this.props,
+			components: {
+				avatar: this.props.components.avatar.getContent(),
+			},
+		});
 	}
 }

@@ -1,3 +1,5 @@
-export default `<button class="button {{class}}">
-{{text}}
-</button>`;
+export default `
+	<button class="button {{class}}">
+		{{text}}
+	</button>
+`.trim();

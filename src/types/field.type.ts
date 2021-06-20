@@ -4,4 +4,5 @@ export type FieldType = {
     value: string,
     name: string,
     errorText?:string,
+    class:string[]
 }

@@ -1,35 +1,33 @@
-import indexTmpl from './index.tmpl';
 import Block from '../../modules/Block';
 import {renderInDOM} from '../../utils/renderInDOM';
-
+import indexTmpl from './index.tmpl';
 import Aside from '../../components/aside';
+import {BlockType} from '../../types/block.type';
 import Main from '../../components/main';
-import parseTmpl from '../../utils/parseTmpl';
-import {pageEnum, PageType} from '../../types/page.type';
 
 class Index extends Block {
-	constructor(props:PageType) {
-		super(indexTmpl, props);
-	}
-
-	render() {
-		this.components = {
-			aside: new Aside(),
+	constructor(props:BlockType) {
+		const components = {
+			aside: new Aside({class: ['aside']}),
 			main: new Main({
-				class: '',
+				class: ['main'],
 				isEmpty: true,
 				contentHeader: '',
 				contentMain: '',
-				contentFooter: '',
-			}),
+				contentFooter: ''}),
 		};
-		this.source = parseTmpl.call(this);
-		const ctx = this._compile();
-		return ctx(this.props);
+		super('div', {...props, components});
+	}
+
+	render():HTMLElement {
+		return this._compile(indexTmpl)({
+			...this.props,
+			components: {
+				aside: this.props.components.aside.getContent(),
+				main: this.props.components.main.getContent(),
+			},
+		});
 	}
 }
 
-renderInDOM(document.querySelector('#app'),
-	new Index({
-		type: pageEnum.chat,
-	}).render());
+renderInDOM(document.querySelector('#app'), new Index({class: ['wrapper']}).getContent());

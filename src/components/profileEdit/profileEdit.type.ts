@@ -4,4 +4,5 @@ export type ProfileEditType = {
     imgSrc:string;
     name:string;
     inputList: ProfileFieldType[];
+    class:string[];
 }

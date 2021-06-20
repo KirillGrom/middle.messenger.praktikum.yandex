@@ -1,24 +1,28 @@
 import profileEditTmpl from './profileEdit.tmpl';
 import Block from '../../modules/Block';
 import Avatar from '../avatar';
-import parseTmpl from '../../utils/parseTmpl';
 import {ProfileEditType} from './profileEdit.type';
+import ProfileBlockItem from '../profileBlockItem';
 
 export default class ProfileEdit extends Block {
-	props:ProfileEditType;
 	constructor(props:ProfileEditType) {
-		super(profileEditTmpl, props);
+		const components = {
+			avatar: new Avatar({
+				imgSrc: props.imgSrc,
+				class: ['avatar', 'avatar--big', 'profile-edit__avatar'],
+			}),
+			profileBlockItem: props.inputList.map(data => new ProfileBlockItem({...data, class: ['profile-block__item'], tagName: 'div'})),
+		};
+		super('div', {...props, components});
 	}
 
-	render(): string {
-		this.components = {
-			avatar: new Avatar({
-				imgSrc: this.props.imgSrc,
-				class: 'avatar--big profile-edit__avatar',
-			}),
-		};
-		this.source = parseTmpl.call(this);
-		const ctx = this._compile();
-		return ctx(this.props);
+	render(): HTMLElement {
+		return this._compile(profileEditTmpl)({
+			...this.props,
+			components: {
+				avatar: this.props.components.avatar.getContent(),
+				profileBlockItem: this.props.components.profileBlockItem.map((item: { getContent: () => HTMLElement; }) => item.getContent()),
+			},
+		});
 	}
 }

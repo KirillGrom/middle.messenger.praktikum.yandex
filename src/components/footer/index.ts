@@ -7,7 +7,7 @@ import Form from '../../modules/form';
 import {BlockType} from '../../types/block.type';
 
 export default class Footer extends Block {
-	constructor(props:BlockType) {
+	constructor(props: BlockType) {
 		const formService = new Form();
 		const components = {
 			formMsg: new FormMsg({

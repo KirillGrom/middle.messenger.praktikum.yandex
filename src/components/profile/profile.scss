@@ -1,9 +1,7 @@
 .profile {
-  display: flex;
+  width: 100%;
   height: 100%;
-  padding: 0 64px;
-  position: relative;
-  overflow:hidden;
+
   &__link-back {
     position: absolute;
     top: 0;
@@ -13,17 +11,43 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #FBFBFB;
+    background-color: #fbfbfb;
     border-right: 1px solid $blue;
-    transition: background-color .3s;
+    transition: background-color 0.3s;
+
     &:hover {
       background-color: $pink;
     }
   }
+
+  &__wrapper {
+    height: 100%;
+    display: flex;
+    padding: 0 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
   &__main {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    align-self: center;
+  }
+
+  & .avatar {
+    width: 130px;
+    height: 130px;
+
+    .avatar__icon {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
+.profile-wrapper {
+  height: 100%;
+
+  & > div {
+    height: 100%;
   }
 }

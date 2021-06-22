@@ -1,1 +1,0 @@
-export default `<ul class="messages {{class}}" >{{content}}</ul>`

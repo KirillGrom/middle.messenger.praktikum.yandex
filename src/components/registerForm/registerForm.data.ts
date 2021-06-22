@@ -1,0 +1,51 @@
+export default [
+	{
+		label: 'Почта',
+		type: 'email',
+		value: '',
+		name: 'email',
+		errorText: 'Не верный формат "Почта"',
+	},
+	{
+		label: 'Логин',
+		type: 'text',
+		value: '',
+		name: 'login',
+		errorText: 'Пустая строка "Логин" недопустима',
+	},
+	{
+		label: 'Имя',
+		type: 'text',
+		value: '',
+		name: 'first_name',
+		errorText: 'Пустая строка "Имя" недопустима',
+	},
+	{
+		label: 'Фамилия',
+		type: 'text',
+		value: '',
+		name: 'second_name',
+		errorText: 'Пустая строка "Фамилия" недопустима',
+	},
+	{
+		label: 'Телефон',
+		type: 'tel',
+		value: '',
+		name: 'phone',
+		errorText: 'Не верный формат "Телефон"',
+	},
+	{
+		label: 'Пароль',
+		type: 'password',
+		value: '',
+		name: 'password',
+		errorText: 'Пароль должен быть минимум 6 символов и содержать буквы и цифры',
+	},
+	{
+		label: 'Пароль (еще раз)',
+		type: 'password',
+		value: '',
+		name: 'password_confirm',
+		errorText: 'Не  совпадает с "Пароль"',
+	},
+];

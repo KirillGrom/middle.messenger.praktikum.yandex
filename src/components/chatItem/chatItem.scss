@@ -3,6 +3,7 @@
   display: flex;
   padding: 12px 0;
   border-top: 1px solid $blue;
+
   &__description {
     display: flex;
     flex-wrap: wrap;
@@ -11,23 +12,32 @@
     align-items: flex-start;
     justify-content: space-between;
   }
+
   &__name {
     width: calc(100% - 90px);
+
     @include font(13,13);
+
     font-weight: 600;
   }
 
   &__datetime {
     margin-left: 17px;
+
     @include font(9,13);
+
     color: $gray;
   }
+
   &__last-message {
     width: calc(100% - 40px);
     text-overflow: ellipsis;
+
     @include font(12,15);
+
     color: $gray;
   }
+
   &__count-new-message {
     display: flex;
     align-items: center;
@@ -35,7 +45,9 @@
     align-self: flex-end;
     width: 20px;
     height: 20px;
+
     @include font(11,12);
+
     border-radius: 50%;
     color: $white;
     background-color: $dark-blue;

@@ -6,7 +6,6 @@
 @import 'style/scss/actions';
 @import 'style/scss/buttons';
 
-
 // Components
 @import 'components/chatItem/chatItem';
 @import 'components/chatList/chatList';
@@ -22,18 +21,16 @@
 @import 'components/profile/profile';
 @import 'components/profileBlock/profileBlock';
 @import 'components/profileEdit/profileEdit';
-@import 'components/passwordEdit/passwordEdit';
 @import 'components/authForm/authForm';
 @import 'components/enterField/enterField';
 @import 'components/registerForm/registerForm';
 @import 'components/boxModal/boxModal';
-@import 'components/modal/modal';
 @import 'components/errorPage/errorPage';
+@import 'components/formMsg/formMsg';
 
-// Layout
-@import 'layout/layout';
-
-*,*:after,*:before {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
 }
 
@@ -47,10 +44,25 @@ body {
   color: $black;
 }
 
-#app {
+#app,
+#app > div {
   width: 100%;
   height: 100%;
 }
 
+.layout {
+  width: 100%;
+  height: 100%;
 
+  &--chat {
+    display: grid;
+    grid-template-columns: minmax(310px, 25%) minmax(auto, calc(100% - 310px));
+  }
 
+  &--enter,
+  &--error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

@@ -3,6 +3,6 @@ export type ProfileBlockItemType = {
 	name: string;
 	value: string;
 	disabled?: boolean;
-	type: string
+	type: string;
 	tagName: string;
 }

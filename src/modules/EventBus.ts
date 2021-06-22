@@ -5,7 +5,7 @@ export default class {
 		this.listeners = {};
 	}
 
-	on(event:string, callback:Function) {
+	on(event:string, callback:Function):void {
 		if (!this.listeners[event]) {
 			this.listeners[event] = [];
 		}
@@ -13,7 +13,7 @@ export default class {
 		this.listeners[event].push(callback);
 	}
 
-	off(event:string, callback:Function) {
+	off(event:string, callback:Function):void {
 		if (!this.listeners[event]) {
 			throw new Error(`Нет события: ${event}`);
 		}
@@ -23,7 +23,7 @@ export default class {
 		);
 	}
 
-	emit(event:string, ...args: undefined[]) {
+	emit(event:string, ...args: undefined[]):void {
 		if (!this.listeners[event]) {
 			throw new Error(`Нет события: ${event}`);
 		}

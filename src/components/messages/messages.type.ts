@@ -1,7 +1,7 @@
 export type MessageTypeData = {
-    type:string;
-    text:string;
-    time:string;
+    type: string;
+    text: string;
+    time: string;
 }
 
 export type MessagesTypeData = {
@@ -11,6 +11,5 @@ export type MessagesTypeData = {
 
 export type MessagesType = {
     messages: MessagesTypeData[];
-    class: string[];
 }
 

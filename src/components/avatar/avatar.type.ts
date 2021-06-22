@@ -1,4 +1,3 @@
 export type AvatarType = {
-    imgSrc: string,
-    class: string[],
+    imgSrc: string;
 }

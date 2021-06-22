@@ -1,4 +1,3 @@
 export type FormMsgType = {
-	class:string[];
-	events:Record<string, Function>;
+	events: Record<string, Function>;
 }

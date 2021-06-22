@@ -1,6 +1,7 @@
 .profile {
   width: 100%;
   height: 100%;
+
   &__link-back {
     position: absolute;
     top: 0;
@@ -18,19 +19,35 @@
       background-color: $pink;
     }
   }
-  &__wrapper  {
-    display: flex;
+
+  &__wrapper {
     height: 100%;
+    display: flex;
     padding: 0 64px;
     position: relative;
     overflow: hidden;
   }
+
   &__main {
     width: 100%;
+    align-self: center;
+  }
+
+  & .avatar {
+    width: 130px;
+    height: 130px;
+
+    .avatar__icon {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
+.profile-wrapper {
+  height: 100%;
+
+  & > div {
     height: 100%;
-    //width: 100%;
-    //display: flex;
-    //justify-content: center;
-    //align-items: center;
   }
 }

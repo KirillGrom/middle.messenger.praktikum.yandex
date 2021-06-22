@@ -1,4 +1,3 @@
-
 export enum pageEnum {
     default = 'default',
     enter = 'enter',
@@ -6,6 +5,7 @@ export enum pageEnum {
     profile = 'profile',
     chat = 'chat',
 }
+
 export type PageType = {
-    type: pageEnum
+    type: pageEnum;
 }

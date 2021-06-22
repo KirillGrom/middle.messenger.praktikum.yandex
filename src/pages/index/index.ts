@@ -1,3 +1,5 @@
+// @ts-ignore
+import Handlebars from 'handlebars';
 import Block from '../../modules/Block';
 import {renderInDOM} from '../../utils/renderInDOM';
 import indexTmpl from './index.tmpl';
@@ -6,11 +8,10 @@ import {BlockType} from '../../types/block.type';
 import Main from '../../components/main';
 
 class Index extends Block {
-	constructor(props:BlockType) {
+	constructor(props: BlockType) {
 		const components = {
-			aside: new Aside({class: ['aside']}),
+			aside: new Aside({}),
 			main: new Main({
-				class: ['main'],
 				isEmpty: true,
 				contentHeader: '',
 				contentMain: '',
@@ -19,15 +20,9 @@ class Index extends Block {
 		super('div', {...props, components});
 	}
 
-	render():HTMLElement {
-		return this._compile(indexTmpl)({
-			...this.props,
-			components: {
-				aside: this.props.components.aside.getContent(),
-				main: this.props.components.main.getContent(),
-			},
-		});
+	render(): Function {
+		return Handlebars.compile(indexTmpl);
 	}
 }
 
-renderInDOM(document.querySelector('#app'), new Index({class: ['wrapper']}).getContent());
+renderInDOM(document.querySelector('#app'), new Index({}).getContent());

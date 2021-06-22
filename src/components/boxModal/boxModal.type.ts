@@ -1,11 +1,11 @@
 import {FieldType} from '../../types/field.type';
 
 export type BoxModalType = {
-	id:string;
-	title:string;
-	textBtn:string;
+	id: string;
+	title: string;
+	textBtn: string;
 	errorTitle?: string;
-	errorActions?:string;
+	errorActions?: string;
 	class: string[];
-	fieldParams:FieldType;
+	fieldParams: FieldType;
 }

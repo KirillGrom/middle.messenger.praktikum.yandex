@@ -1,14 +1,14 @@
 // @ts-ignore
-import Handlebars from 'handlebars';
-// @ts-ignore
 import {v4 as makeUUID} from 'uuid';
 import EventBus from './EventBus';
 import {BlockType} from '../types/block.type';
+import {EventBusType} from '../types/eventBus.type';
 
-	type metaType = {
-		tagName: string
-		props:any
-	}
+type metaType = {
+	tagName: string;
+	props: any;
+}
+
 export default class Block {
 	static EVENTS = {
 		INIT: 'init',
@@ -17,19 +17,18 @@ export default class Block {
 		FLOW_RENDER: 'flow:render',
 	};
 
-	eventBus: () => EventBus;
+	eventBus: EventBusType;
 	_element: HTMLElement;
-	_meta:metaType;
-	_id:string;
-	props:any;
+	_meta: metaType;
+	_id: string;
+	props: any;
 	/** JSDoc
 	 * @param {string} tagName
 	 * @param {Object} props
 	 *
 	 * @returns {void}
 	 */
-	constructor(tagName:string, props:BlockType): void {
-		const eventBus = new EventBus();
+	constructor(tagName: string, props: BlockType) {
 		this._meta = {
 			tagName,
 			props,
@@ -38,13 +37,13 @@ export default class Block {
 		this._id = makeUUID();
 		this.props = this._makePropsProxy({...props, _id: this._id});
 
-		this.eventBus = () => eventBus;
+		this.eventBus = new EventBus();
 
-		this._registerEvents(eventBus);
-		eventBus.emit(Block.EVENTS.INIT);
+		this._registerEvents(this.eventBus);
+		this.eventBus.emit(Block.EVENTS.INIT);
 	}
 
-	_registerEvents(eventBus:EventBus) {
+	_registerEvents(eventBus: EventBusType) {
 		eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
 		eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
 		eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -56,47 +55,51 @@ export default class Block {
 		this._element = this._createDocumentElement(tagName);
 	}
 
-	_compile(tmpl:string):Function {
-		return (props:any) => {
-			const compid = Handlebars.compile(tmpl, {noEscape: true})(props);
-			const _element = new DOMParser().parseFromString(compid, 'text/html').body.children[0];
-			if (props.components && _element) {
-				for (const [key, instance] of Object.entries(props.components)) {
-					const customTags = _element.querySelectorAll(`[data-component='${key}']`)[0];
-					if (!customTags) {
-						return _element;
-					}
+	_compileInDomElement(tmpl: string): HTMLElement {
+		const {body} = new DOMParser().parseFromString(tmpl, 'text/html');
+		const _element = body.children[0];
 
-					if (Array.isArray(instance)) {
-						instance.forEach(elm => customTags.insertAdjacentElement('beforebegin', elm));
-					} else {
-						customTags.insertAdjacentElement('beforebegin', instance as HTMLElement);
-					}
-
-					try {
-						_element.removeChild(customTags);
-					} catch (e) {
-
-					}
+		if (this.props.components && _element) {
+			for (const [key, instance] of Object.entries(this.props.components)) {
+				const customTags = _element.querySelectorAll(`[data-component='${key}']`)[0];
+				if (!customTags) {
+					return _element as HTMLElement;
 				}
+
+				if (Array.isArray(instance)) {
+					instance.forEach(elm => customTags.insertAdjacentElement('beforebegin', elm.getContent()));
+				} else {
+					customTags.insertAdjacentElement('beforebegin', instance.getContent() as HTMLElement);
+				}
+
+				customTags.parentElement?.removeChild(customTags);
 			}
+		}
 
-			return _element;
-		};
+		return _element as HTMLElement;
 	}
 
-	init() {
+	_render(): void {
+		const compileTemplate = this.render();
+		const html = compileTemplate({...this.props});
+		const element = this._compileInDomElement(html);
+		this._element.insertAdjacentElement('afterbegin', element);
+		this._removeEvents();
+		this._addEvents();
+	}
+
+	init(): void {
 		this._createResources();
-		this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+		this.eventBus.emit(Block.EVENTS.FLOW_CDM);
 	}
 
-	_componentDidMount() {
+	_componentDidMount(): void {
 		this.componentDidMount();
-		this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+		this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
 	}
 
-	_componentDidUpdate<T>(oldProps:T, newProps:T) {
-		const response = this.componentDidUpdate(oldProps, newProps);
+	_componentDidUpdate<T>(oldProps:T, newProps:T): void {
+		const response = this.isPropsChanged(oldProps, newProps);
 		if (!response) {
 			return;
 		}
@@ -104,13 +107,13 @@ export default class Block {
 		this._render();
 	}
 
-	componentDidMount() {}
+	componentDidMount(): void {}
 
-	componentDidUpdate<T>(oldProps:T, newProps:T):boolean {
+	isPropsChanged<T>(oldProps:T, newProps:T): boolean {
 		return true;
 	}
 
-	setProps = (nextProps:Object) => {
+	setProps = (nextProps:Object): void => {
 		if (!nextProps) {
 			return;
 		}
@@ -118,26 +121,19 @@ export default class Block {
 		Object.assign(this.props, nextProps);
 	};
 
-	get element() {
+	get element(): HTMLElement {
 		return this._element;
 	}
 
-	_render() {
-		const block = this.render();
-		this._element.insertAdjacentElement('afterbegin', block);
-		this._removeEvents();
-		this._addEvents();
+	render(): Function {
+		return () => {};
 	}
 
-	render():HTMLElement {
-		return document.createElement('div');
-	}
-
-	getContent() {
+	getContent(): HTMLElement {
 		return this.element;
 	}
 
-	_makePropsProxy(props:Object):Object {
+	_makePropsProxy(props:Object): Object {
 		const self = this;
 		const oldProps = JSON.parse(JSON.stringify(props));
 		return new Proxy(props, {
@@ -156,36 +152,31 @@ export default class Block {
 		});
 	}
 
-	_createDocumentElement(tagName:string):HTMLElement {
+	_createDocumentElement(tagName:string): HTMLElement {
 		const element = document.createElement(tagName);
-		element.classList.add(...this.props.class);
 		element.setAttribute('data-id', this._id);
-		if (this.props.href) {
-			element.setAttribute('href', this.props.href);
-		}
-
 		return element;
 	}
 
-	_addEvents() {
+	_addEvents(): void {
 		const {events = {}} = this.props;
 		Object.keys(events).forEach(eventName => {
-			this._element.addEventListener('click', events[eventName]);
+			this._element.addEventListener(eventName, events[eventName]);
 		});
 	}
 
-	_removeEvents() {
+	_removeEvents(): void {
 		const {events = {}} = this.props;
 		Object.keys(events).forEach(eventName => {
 			this._element.removeEventListener(eventName, events[eventName]);
 		});
 	}
 
-	show() {
+	show(): void {
 		this.getContent().style.display = 'block';
 	}
 
-	hide() {
+	hide(): void {
 		this.getContent().style.display = 'none';
 	}
 }

@@ -7,7 +7,10 @@
 }
 
 type optionsType = {
-	timeout: number
+	timeout: number;
+	method: METHODS;
+	headers: Record<string, string>;
+	data: any;
 }
 
 function queryStringify(data:string):string {
@@ -20,7 +23,7 @@ function queryStringify(data:string):string {
 }
 
 export default class {
-	get = (url:string, options:optionsType) => this.request(url, {...options, method: METHODS.GET}, options.timeout);
+	get = (url:string, options:optionsType) => this.request(`${url}${queryStringify(options.data)}`, {...options, method: METHODS.GET}, options.timeout);
 
 	post = (url:string, options:optionsType) => this.request(url, {...options, method: METHODS.POST}, options.timeout);
 
@@ -32,12 +35,10 @@ export default class {
 
 	request = (url:string, options:any, timeout = 5000) => {
 		const {method, headers = {}, data} = options;
-
-		const query = method === METHODS.GET ? queryStringify(data) : '';
 		return new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
 
-			xhr.open(method, url + query);
+			xhr.open(method, url);
 			Object.entries(headers).forEach(([key, value]) => {
 				if (typeof value === 'string') {
 					xhr.setRequestHeader(key, value);

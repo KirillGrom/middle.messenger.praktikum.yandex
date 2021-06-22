@@ -1,6 +1,7 @@
 .profile-block {
   display: flex;
   height: 100%;
+
   &__name {
     margin-top: 21px;
 
@@ -8,6 +9,7 @@
 
     text-align: center;
   }
+
   &__wrapper {
     display: flex;
     flex-direction: column;
@@ -15,6 +17,7 @@
     justify-content: center;
     margin: auto;
   }
+
   &__list {
     list-style: none;
     padding: 60px 0;
@@ -78,6 +81,7 @@
     text-align: right;
     color: $gray;
   }
+
   &__name {
     width: 100%;
   }

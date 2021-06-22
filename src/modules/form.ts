@@ -1,16 +1,19 @@
 export default class Form {
-	public submit(targetElement:HTMLFormElement):void {
+	public submit(event:Event):void {
+		event.preventDefault();
+		const targetElement = event.currentTarget as HTMLFormElement;
+		const formElements = targetElement.querySelectorAll('input');
 		let isValid = false;
-		if (!targetElement.elements) {
+		if (!formElements) {
 			return;
 		}
 
 		const acc: Record<string, string> = {};
-		const resultObject = Array.from(targetElement.elements).reduce((acc, item:HTMLFormElement) => {
+		const resultObject = Array.from(formElements).reduce((acc, item) => {
 			const attributeName:string | null = item.getAttribute('name');
 			if (attributeName) {
 				acc[attributeName] = item.value;
-				isValid = this.checkInputValidated(item);
+				isValid = this.checkInputValidated(item as unknown as HTMLFormElement);
 				this.toggleErrorClass(item, isValid);
 			}
 
@@ -67,6 +70,7 @@ export default class Form {
 	}
 
 	private toggleErrorClass(input:HTMLElement, flag:boolean):void {
+		console.log(input);
 		if (flag) {
 			const _parent = input.parentNode;
 			if (_parent) {

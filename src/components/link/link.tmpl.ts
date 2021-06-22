@@ -1,1 +1,7 @@
-export default '<span>{{linkName}}</span>'.trim();
+export default `
+	<div class="link-wrapper">
+		<a href={{href}} class="link link--gray">
+			<span>{{linkName}}</span>
+		</a>
+	</div>
+`.trim();

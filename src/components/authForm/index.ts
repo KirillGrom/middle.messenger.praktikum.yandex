@@ -1,3 +1,5 @@
+// @ts-ignore
+import Handlebars from 'handlebars';
 import AuthFormTmpl from './authForm.tmpl';
 import Block from '../../modules/Block';
 import EnterField from '../enterField';
@@ -12,13 +14,7 @@ export default class AuthForm extends Block {
 		super('form', {...props, components});
 	}
 
-	render():HTMLElement {
-		return this._compile(AuthFormTmpl)({
-			...this.props,
-			components: {
-				enterField: this.props.components.enterField.map((field: { getContent: () => string; }) => field.getContent()),
-			},
-
-		});
+	render(): Function {
+		return Handlebars.compile(AuthFormTmpl);
 	}
 }

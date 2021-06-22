@@ -1,3 +1,5 @@
+// @ts-ignore
+import Handlebars from 'handlebars';
 import MessagesTmpl from './messages.tmpl';
 import Block from '../../modules/Block';
 import Message from '../message';
@@ -10,12 +12,11 @@ export default class Messages extends Block {
 				const date = new Message({
 					isDataTime: true,
 					time: data.date,
-					class: ['message-item', 'message-item__date-time'],
 				});
 				const messages = data.messages.map(({text, time, type}) => new Message({
 					message: text,
 					time,
-					class: ['message-item', type === 'person' ? 'message-item--person' : 'message-item--my'],
+					type,
 				}));
 
 				return [...acc, date, ...messages];
@@ -24,13 +25,8 @@ export default class Messages extends Block {
 		super('div', {...props, components});
 	}
 
-	render(): HTMLElement {
-		return this._compile(MessagesTmpl)({
-			...this.props,
-			components: {
-				messages: this.props.components.messages.map((msg: { getContent: () => HTMLElement; }) => msg.getContent()),
-			},
-		});
+	render(): Function {
+		return Handlebars.compile(MessagesTmpl);
 	}
 }
 

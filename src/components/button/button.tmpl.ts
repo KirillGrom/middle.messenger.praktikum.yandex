@@ -1,5 +1,7 @@
 export default `
-	<button class="button {{class}}">
-		{{text}}
-	</button>
+	<div class="button-wrapper">
+		<button class="button {{class}}">
+			{{text}}
+		</button>
+	</div>
 `.trim();

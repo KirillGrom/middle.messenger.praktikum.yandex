@@ -21,6 +21,12 @@
     @include font(12,12);
   }
 
+  &--data {
+    .message-item__wrapper {
+      margin: auto;
+    }
+  }
+
   &--person {
     .message-item__wrapper {
       background-color: $light-gray;

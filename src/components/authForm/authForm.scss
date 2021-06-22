@@ -23,6 +23,13 @@
   }
 
   &__link {
-    margin: auto;
+    & .link {
+      margin: auto;
+      color: $dark-blue;
+
+      &::after {
+        display: none;
+      }
+    }
   }
 }

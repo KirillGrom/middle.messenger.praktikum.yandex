@@ -1,15 +1,16 @@
+// @ts-ignore
+import Handlebars from 'handlebars';
 import FooterTmpl from './footer.tmpl';
 import Block from '../../modules/Block';
-import {FooterType} from './footer.type';
 import FormMsg from '../formMsg';
 import Form from '../../modules/form';
+import {BlockType} from '../../types/block.type';
 
 export default class Footer extends Block {
-	constructor(props:FooterType) {
+	constructor(props:BlockType) {
 		const formService = new Form();
 		const components = {
 			formMsg: new FormMsg({
-				class: ['form-message__form'],
 				events: {
 					focusout: (event:Event) => {
 						formService.inputEventHandler(event);
@@ -19,20 +20,15 @@ export default class Footer extends Block {
 					},
 					submit: (event:Event) => {
 						event.preventDefault();
-						formService.submit(event.currentTarget as HTMLFormElement);
+						formService.submit(event);
 					},
 				},
 			}),
 		};
-		super('footer', {...props, components});
+		super('div', {...props, components});
 	}
 
-	render():HTMLElement {
-		return this._compile(FooterTmpl)({
-			...this.props,
-			components: {
-				formMsg: this.props.components.formMsg.getContent(),
-			},
-		});
+	render(): Function {
+		return Handlebars.compile(FooterTmpl);
 	}
 }

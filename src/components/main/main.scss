@@ -1,11 +1,14 @@
 .main {
+  height: 100%;
   padding: 19px 24px 16px  24px;
+
   &__wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     height: 100%;
   }
+
   &__empty-messages {
     margin: auto;
 

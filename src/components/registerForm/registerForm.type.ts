@@ -1,7 +1,6 @@
 import {FieldType} from '../../types/field.type';
 
 export type RegisterFormType = {
-    enterFields:FieldType[];
-    class: string[];
-    events:Record<string, Function>
+    enterFields: FieldType[];
+    events: Record<string, Function>
 }

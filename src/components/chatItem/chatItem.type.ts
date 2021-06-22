@@ -1,4 +1,4 @@
-export type chatItemType = {
+export type ChatItemType = {
     id: string;
     href: string;
     name: string;
@@ -7,5 +7,4 @@ export type chatItemType = {
     lastMessageText: string;
     countNewMessage: string;
     isCountNewMessageHidden: boolean;
-    class: string[];
 }

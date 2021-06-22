@@ -1,6 +1,5 @@
 export type MainType = {
-    class: string[];
-    isEmpty:boolean;
+    isEmpty: boolean;
     contentHeader: string;
     contentMain: string;
     contentFooter: string;

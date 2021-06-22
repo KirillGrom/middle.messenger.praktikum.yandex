@@ -1,3 +1,5 @@
+// @ts-ignore
+import Handlebars from 'handlebars';
 import errorTmpl from './error.tmpl';
 import {renderInDOM} from '../../utils/renderInDOM';
 import Block from '../../modules/Block';
@@ -10,19 +12,13 @@ export default class Page500 extends Block {
 			error: new ErrorPage({
 				text: 'Мы уже фиксим',
 				code: '500',
-				class: ['error-page'],
 			}),
 		};
 		super('div', {...props, components});
 	}
 
-	render(): HTMLElement {
-		return this._compile(errorTmpl)({
-			...this.props,
-			components: {
-				error: this.props.components.error.getContent(),
-			},
-		});
+	render(): Function {
+		return Handlebars.compile(errorTmpl);
 	}
 }
-renderInDOM(document.querySelector('#app'), new Page500({class: ['wrapper']}).getContent());
+renderInDOM(document.querySelector('#app'), new Page500({}).getContent());

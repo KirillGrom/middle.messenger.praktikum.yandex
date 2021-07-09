@@ -1,4 +1,4 @@
-export default class Form {
+export default class {
 	public submit(event:Event):void {
 		event.preventDefault();
 		const targetElement = event.currentTarget as HTMLFormElement;

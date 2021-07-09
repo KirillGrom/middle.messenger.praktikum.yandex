@@ -3,7 +3,7 @@ import Handlebars from 'handlebars';
 import {expect} from 'chai';
 import globalWindow from '../../../test/globalWindow';
 import Block from './index';
-globalWindow;
+console.log(globalWindow);
 
 const tmpl = '<div>{{text}}</div>';
 class ComponentTest extends Block {
@@ -24,6 +24,6 @@ describe('Проверяем Block', () => {
 	const child = content.querySelector('div');
 
 	it('Вставка  пропсов', () => {
-		expect(child.textContent).to.equal('Test');
+		expect(child?.textContent).to.equal('Test');
 	});
 });

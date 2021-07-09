@@ -3,26 +3,39 @@
   "version": "1.0.0",
   "description": "Самостоятельный проект веб-чата",
   "main": "src/index.ts",
+  "browserslist": [
+    "last 1 Chrome version"
+  ],
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.27.0",
-    "@typescript-eslint/parser": "^4.27.0",
-    "eslint": "^7.28.0",
+    "@babel/core": "^7.14.6",
+    "@babel/register": "^7.14.5",
+    "@types/chai": "^4.2.20",
+    "@types/mocha": "^8.2.3",
+    "@typescript-eslint/eslint-plugin": "^4.28.1",
+    "@typescript-eslint/parser": "^4.28.1",
+    "chai": "^4.3.4",
+    "chai-dom": "^1.9.0",
+    "eslint": "^7.29.0",
     "eslint-config-xo": "^0.37.0",
     "express": "^4.17.1",
     "handlebars": "^4.7.7",
+    "jsdom": "^16.6.0",
+    "miragejs": "^0.1.41",
+    "mocha": "^9.0.2",
     "parcel-bundler": "^1.12.5",
     "parcel-plugin-custom-dist-structure": "^1.1.17",
     "parcel-plugin-static-files-copy": "^2.6.0",
-    "sass": "^1.32.8",
+    "sass": "^1.35.1",
     "stylelint": "^13.13.1",
-    "typescript": "^4.3.2"
+    "typescript": "^4.3.4"
   },
   "scripts": {
     "start": "npm run clear && parcel build ./static/*.html --no-source-maps --no-cache --public-url ./ && node ./server.js",
-    "dev": "npm run clear && parcel ./static/*.html --port 3000",
+    "dev": "parcel ./static/index.html --port 3000",
     "build": "npm run clear && parcel build ./static/*.html --no-source-maps --no-cache --no-minify --public-url ./",
     "clear": "rm -rf dist .cache",
-    "lint": "eslint --fix --ext .ts, --ignore-path .gitignore . && stylelint \"**/*.scss\" --fix  --config .stylelintrc.json"
+    "lint": "eslint --fix --ext .ts, --ignore-path .gitignore . && stylelint \"**/*.scss\" --fix  --config .stylelintrc.json",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -48,6 +61,8 @@
     }
   },
   "dependencies": {
+    "@babel/preset-env": "^7.14.7",
+    "@babel/preset-typescript": "^7.14.5",
     "stylelint-config-standard": "^22.0.0"
   }
 }

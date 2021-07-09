@@ -1,3 +1,5 @@
+import {IBlock} from './block.type';
+
 export enum pageEnum {
     default = 'default',
     enter = 'enter',
@@ -6,6 +8,6 @@ export enum pageEnum {
     chat = 'chat',
 }
 
-export type PageType = {
-    type: pageEnum;
+export interface IPage extends IBlock {
+    constructor(): IPage;
 }

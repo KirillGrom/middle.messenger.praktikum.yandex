@@ -1,17 +1,20 @@
 // @ts-ignore
 import Handlebars from 'handlebars';
 import loginTmpl from './login.tmpl';
-import {renderInDOM} from '../../utils/renderInDOM';
 import AuthForm from '../../components/authForm';
 import authFormData from '../../components/authForm/authForm.data';
 import Block from '../../modules/Block';
-import {BlockType} from '../../types/block.type';
 import Link from '../../components/link';
 import Form from '../../modules/form';
+import router from '../../services/router';
+import getFormDataValue from '../../utils/getFormDataValue';
+import AuthController from '../../controllers/auth/auth.controller';
+
+const formService = new Form();
+const authController = new AuthController();
 
 export default class Login extends Block {
-	constructor(props: BlockType) {
-		const formService = new Form();
+	constructor() {
 		const components = {
 			authForm: new AuthForm({
 				enterFields: authFormData,
@@ -24,15 +27,23 @@ export default class Login extends Block {
 					},
 					submit: (event:Event) => {
 						formService.submit(event);
+						const form = event.target as HTMLFormElement;
+						const formData = new FormData(form);
+						authController.signIn(getFormDataValue(formData));
 					},
 				},
 			}),
 			link: new Link({
-				href: '/registration.html',
 				linkName: 'Нет аккаунта?',
+				events: {
+					click: (event: Event) => {
+						event.preventDefault();
+						router.go('/signup');
+					},
+				},
 			}),
 		};
-		super('div', {...props, components});
+		super('div', {components});
 	}
 
 	render():Function {
@@ -40,5 +51,3 @@ export default class Login extends Block {
 	}
 }
 
-renderInDOM(document.querySelector('#app'), new Login({
-}).getContent());

@@ -1,24 +1,25 @@
 // @ts-ignore
 import Handlebars from 'handlebars';
-import {renderInDOM} from '../../utils/renderInDOM';
 import Block from '../../modules/Block';
 import Profile from '../../components/profile';
 import ProfileEditData from '../../components/profileEdit/profileEdit.data';
 import profileTmpl from './profileEdit.tmpl';
-import {BlockType} from '../../types/block.type';
+import AuthController from '../../controllers/auth/auth.controller';
+import {typeEdit} from '../../components/profile/profile.type';
 
-export class ProfileEditPage extends Block {
-	constructor(props:BlockType) {
+const authController = new AuthController();
+
+export default class ProfileEditPage extends Block {
+	constructor() {
+		authController.user();
 		const components = {
 			profile: new Profile({
-				href: 'index.html',
-				imgSrc: '',
-				name: 'Вася',
 				inputList: ProfileEditData,
 				isEdit: true,
+				typeEdit: typeEdit.profile,
 			}),
 		};
-		super('div', {...props, components});
+		super('div', {components});
 	}
 
 	render(): Function {
@@ -26,4 +27,3 @@ export class ProfileEditPage extends Block {
 	}
 }
 
-renderInDOM(document.querySelector('#app'), new ProfileEditPage({}).getContent());

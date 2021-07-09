@@ -8,13 +8,9 @@ const distPath = '/dist';
 app.use(express.static(__dirname + distPath));
 
 app.get('/*', (req, res) => {
-	const path = __dirname + `${distPath}${req.path}.html`;
+	const path = __dirname + `${distPath}${req.path}`;
 	fs.access(path, fs.constants.F_OK, e => {
-		if (e) {
-			res.sendFile(__dirname + `${distPath}/error404.html`);
-		} else {
-			res.sendFile(__dirname + `${distPath}${req.path}.html`);
-		}
+		res.sendFile(__dirname + `${distPath}/index.html`);
 	});
 });
 

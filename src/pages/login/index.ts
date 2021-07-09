@@ -5,7 +5,7 @@ import AuthForm from '../../components/authForm';
 import authFormData from '../../components/authForm/authForm.data';
 import Block from '../../modules/Block';
 import Link from '../../components/link';
-import Form from '../../modules/form';
+import Form from '../../modules/Form';
 import router from '../../services/router';
 import getFormDataValue from '../../utils/getFormDataValue';
 import AuthController from '../../controllers/auth/auth.controller';

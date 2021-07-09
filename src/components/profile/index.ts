@@ -5,7 +5,7 @@ import Block from '../../modules/Block';
 import ProfileBlock from '../profileBlock';
 import ProfileEdit from '../profileEdit';
 import {ProfileType, typeEdit} from './profile.type';
-import Form from '../../modules/form';
+import Form from '../../modules/Form';
 import ProfileButton from '../profileButton';
 import router from '../../services/router';
 import UserController from '../../controllers/user/user.controller';

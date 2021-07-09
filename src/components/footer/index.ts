@@ -3,7 +3,7 @@ import Handlebars from 'handlebars';
 import FooterTmpl from './footer.tmpl';
 import Block from '../../modules/Block';
 import FormMsg from '../formMsg';
-import Form from '../../modules/form';
+import Form from '../../modules/Form';
 import {BlockType} from '../../types/block.type';
 import getFormDataValue from '../../utils/getFormDataValue';
 import ChatController from '../../controllers/chat/chat.controller';

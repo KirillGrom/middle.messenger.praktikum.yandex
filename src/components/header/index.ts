@@ -7,7 +7,7 @@ import {HeaderType} from './header.type';
 import Store from '../../modules/Store';
 import HeaderButtons from '../headerButtons';
 import Modal from '../modal';
-import Form from '../../modules/form';
+import Form from '../../modules/Form';
 import ChatController from '../../controllers/chat/chat.controller';
 import getFormDataValue from '../../utils/getFormDataValue';
 

@@ -43,7 +43,6 @@ export default class ProfileBlock extends Block {
 				},
 			},
 		});
-		const
 		modal.hide();
 		const components = {
 			buttonAvatar: new ButtonAvatar({

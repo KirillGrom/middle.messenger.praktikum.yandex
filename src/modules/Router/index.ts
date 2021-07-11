@@ -1,6 +1,5 @@
 import Route from '../Route';
 import {IRoute} from '../Route/route.type';
-import {IPage} from '../../types/page.type';
 
 export default class Router {
 	private routes: IRoute[];
@@ -23,8 +22,8 @@ export default class Router {
 		Router.__instance = this;
 	}
 
-	use(pathname: string, block: IPage) {
-		const route = new Route(pathname, block as IPage, {rootQuery: this._rootQuery});
+	use(pathname: string, block: Object) {
+		const route = new Route(pathname, block, {rootQuery: this._rootQuery});
 
 		this.routes.push(route);
 
@@ -33,7 +32,6 @@ export default class Router {
 
 	start(): void {
 		window.onpopstate = ((event: Event) => {
-			debugger
 			if (event.currentTarget) {
 				this._onRoute((event.currentTarget as Window).location.pathname);
 			}

@@ -1,12 +1,12 @@
 import BaseApi from '../../modules/http/baseApi';
-import {passwordEditType, profileEditType, userSearch} from '../../controllers/user/user.type';
+import {passwordEditData, profileEditData, userSearchData} from '../../controllers/user/user.type';
 
-export default class UserApi extends BaseApi {
-	constructor(baseUrl:string) {
-		super({baseUrl, endpoint: 'user'});
+class UserApi extends BaseApi {
+	constructor() {
+		super({endpoint: 'user'});
 	}
 
-	public async profileEdit(data: profileEditType): Promise<XMLHttpRequest> {
+	public profileEdit(data: profileEditData): Promise<XMLHttpRequest> {
 		const options = {
 			data: JSON.stringify(data),
 			timeout: 3000,
@@ -14,21 +14,21 @@ export default class UserApi extends BaseApi {
 				'content-type': 'application/json',
 			},
 		};
-		const response = await this.http.put(this.getUrl('profile'), options);
-		return response;
+
+		return this.http.put(this.getUrl('profile'), options);
 	}
 
-	public async avatarEdit(data: FormData): Promise<XMLHttpRequest> {
+	public avatarEdit(data: FormData): Promise<XMLHttpRequest> {
 		const options = {
 			data,
 			timeout: 3000,
 			headers: {},
 		};
-		const response = await this.http.put(this.getUrl('profile/avatar'), options);
-		return response;
+
+		return this.http.put(this.getUrl('profile/avatar'), options);
 	}
 
-	public async passwordEdit(data: passwordEditType): Promise<XMLHttpRequest> {
+	public passwordEdit(data: passwordEditData): Promise<XMLHttpRequest> {
 		const options = {
 			data: JSON.stringify(data),
 			timeout: 3000,
@@ -36,22 +36,22 @@ export default class UserApi extends BaseApi {
 				'content-type': 'application/json',
 			},
 		};
-		const response = await this.http.put(this.getUrl('password'), options);
-		return response;
+
+		return this.http.put(this.getUrl('password'), options);
 	}
 
-	public async userById(id: string) {
+	public userById(id: string) {
 		const options = {
 			timeout: 3000,
 			headers: {
 				'content-type': 'application/json',
 			},
 		};
-		const response = await this.http.get(this.getUrl(`${id}`), options);
-		return response;
+
+		return this.http.get(this.getUrl(`${id}`), options);
 	}
 
-	public async userSearch(data: userSearch) {
+	public userSearch(data: userSearchData) {
 		const options = {
 			data: JSON.stringify(data),
 			timeout: 3000,
@@ -59,7 +59,9 @@ export default class UserApi extends BaseApi {
 				'content-type': 'application/json',
 			},
 		};
-		const response = await this.http.post(this.getUrl('search'), options);
-		return response;
+
+		return this.http.post(this.getUrl('search'), options);
 	}
 }
+
+export default new UserApi();

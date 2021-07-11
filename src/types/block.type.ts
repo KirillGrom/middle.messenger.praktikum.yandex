@@ -11,7 +11,7 @@ export interface IBlock {
 	_meta: metaType;
 	_id: string;
 	props: any;
-	constructor(tagName: string, props: BlockType): IBlock;
+	element: HTMLElement;
 	_registerEvents(eventBus: EventBusType): void;
 	_createResources(): void;
 	_compileInDomElement(tmpl: string): HTMLElement;
@@ -19,11 +19,10 @@ export interface IBlock {
 	init(): void;
 	_componentDidMount(): void;
 	_componentDidUpdate<T>(oldProps: T, newProps: T): void;
-	_render(): string;
+	_render(): void;
 	componentDidMount(): void;
 	isPropsChanged<T>(oldProps: T, newProps: T): boolean;
 	setProps(nextProps: Object): void;
-	element(): HTMLElement;
 	render(): Function;
 	getContent(): HTMLElement;
 	_makePropsProxy(props: Object): Object;

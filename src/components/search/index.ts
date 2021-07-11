@@ -1,4 +1,3 @@
-// @ts-ignore
 import Handlebars from 'handlebars';
 import SearchTmpl from './search.tmpl';
 import Block from '../../modules/Block';

@@ -1,5 +1,5 @@
-export default class {
-	public submit(event:Event):void {
+class FormService {
+	public checkValidating(event:Event):void {
 		event.preventDefault();
 		const targetElement = event.currentTarget as HTMLFormElement;
 		const formElements = targetElement.querySelectorAll('input');
@@ -9,7 +9,7 @@ export default class {
 		}
 
 		const acc: Record<string, string> = {};
-		const resultObject = Array.from(formElements).reduce((acc, item) => {
+		Array.from(formElements).reduce((acc, item) => {
 			const attributeName:string | null = item.getAttribute('name');
 			if (attributeName) {
 				acc[attributeName] = item.value;
@@ -19,11 +19,6 @@ export default class {
 
 			return acc;
 		}, acc);
-		if (!isValid) {
-			return;
-		}
-
-		console.log(resultObject);
 	}
 
 	public changeInputFile(input:HTMLFormElement):void {
@@ -92,3 +87,5 @@ export default class {
 		}
 	}
 }
+
+export default new FormService();

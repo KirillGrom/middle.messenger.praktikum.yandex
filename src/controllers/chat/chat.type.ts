@@ -1,16 +1,16 @@
 import {UserType} from '../auth/auth.type';
 
-export type ChatType = {
+export type ChatData = {
 	offset: number;
 	limit: number;
 	title: string;
 }
 
-export type ChatCreateType = {
+export type ChatCreateData = {
 	title: string;
 }
 
-export type AddUsersOrDeleteType = {
+export type AddUsersOrDeleteData = {
 	users: number[];
 	chatId: number;
 }

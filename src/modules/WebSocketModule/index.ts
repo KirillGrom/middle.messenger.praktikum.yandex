@@ -1,8 +1,6 @@
 import get from '../../utils/get';
 import Store from '../../modules/Store';
 
-const storeInstance = new Store();
-
 enum WS_EVENTS {
 	OPEN = 'open',
 	CLOSE = 'close',
@@ -53,9 +51,9 @@ export default class WebSocketModule {
 		console.log('Получены данные');
 		const data = JSON.parse(event.data);
 		if (Array.isArray(data)) {
-			storeInstance.commit('message', data);
+			Store.commit('message', data);
 		} else {
-			storeInstance.commit('message', [data]);
+			Store.commit('message', [data]);
 		}
 	}
 
@@ -66,12 +64,12 @@ export default class WebSocketModule {
 	public connect(): void {
 		if (this.socket) {
 			this.closeConnect();
-			storeInstance.commit('clearMessage');
+			Store.commit('clearMessage');
 		}
 
-		const chatId = get(storeInstance.getState(), 'currentChatId');
-		const chatToken = get(storeInstance.getState(), 'chatToken');
-		const userId = get(storeInstance.getState(), 'user').id;
+		const chatId = get(Store.getState(), 'currentChatId');
+		const chatToken = get(Store.getState(), 'chatToken');
+		const userId = get(Store.getState(), 'user').id;
 		this.socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${chatToken}`);
 
 		this._registerEvents(this.socket);

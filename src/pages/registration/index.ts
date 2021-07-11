@@ -1,34 +1,38 @@
-// @ts-ignore
 import Handlebars from 'handlebars';
 import registrationTmpl from './registration.tmpl';
 import Block from '../../modules/Block';
 import RegisterForm from '../../components/registerForm';
 import registerFormData from '../../components/registerForm/registerForm.data';
 import Link from '../../components/link';
-import Form from '../../modules/Form';
 import router from '../../services/router';
 import AuthController from '../../controllers/auth/auth.controller';
 import getFormDataValue from '../../utils/getFormDataValue';
+import FormService from '../../modules/Form';
+import {Valid} from '../../utils/constants/valid';
 
 export default class Registration extends Block {
 	constructor() {
-		const formService = new Form();
-		const authController = new AuthController();
 		const components = {
 			registerForm: new RegisterForm({
 				enterFields: registerFormData,
 				events: {
 					focusout: (event:Event) => {
-						formService.inputEventHandler(event);
+						FormService.inputEventHandler(event);
 					},
 					focusin: (event:Event) => {
-						formService.inputEventHandler(event);
+						FormService.inputEventHandler(event);
 					},
 					submit: (event:Event) => {
 						event.preventDefault();
 						const form = event.target as HTMLFormElement;
 						const formData = new FormData(form);
-						authController.signUp(getFormDataValue(formData));
+						try {
+							AuthController.signUp(getFormDataValue(formData));
+						} catch (error) {
+							if (error === Valid.noValid) {
+								FormService.checkValidating(event);
+							}
+						}
 					},
 				},
 			}),

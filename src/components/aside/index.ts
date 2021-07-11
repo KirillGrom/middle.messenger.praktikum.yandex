@@ -1,4 +1,3 @@
-// @ts-ignore
 import Handlebars from 'handlebars';
 import asideTmpl from './aside.tmpl';
 import Block from '../../modules/Block';
@@ -12,9 +11,8 @@ import ChatController from '../../controllers/chat/chat.controller';
 import getFormDataValue from '../../utils/getFormDataValue';
 import Store from '../../modules/Store';
 import get from '../../utils/get';
-
-const storeInstance = new Store();
-const chatController = new ChatController();
+import FormService from '../../modules/Form';
+import {Valid} from '../../utils/constants/valid';
 
 export default class Aside extends Block {
 	constructor(props: any) {
@@ -32,7 +30,14 @@ export default class Aside extends Block {
 					event.preventDefault();
 					const form = event.target as HTMLFormElement;
 					const formData = new FormData(form);
-					chatController.createChat(getFormDataValue(formData));
+					try {
+						ChatController.createChat(getFormDataValue(formData));
+					} catch (error) {
+						if (error === Valid.noValid) {
+							FormService.checkValidating(event);
+						}
+					}
+
 					modal.hide();
 				},
 			},
@@ -58,9 +63,9 @@ export default class Aside extends Block {
 				},
 			}),
 			chatList: new ChatList({
-				chatItems: () => get(storeInstance.getState(), 'chats'),
+				chatItems: () => get(Store.getState(), 'chats'),
 				events: {},
-			}, storeInstance),
+			}),
 			modal,
 		};
 		super('div', {...props, components});

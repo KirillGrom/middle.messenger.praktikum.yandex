@@ -7,7 +7,7 @@ export default `
 			</div>
 			<div class="header__actions actions">
 				<button class="header__button actions__button">
-					<svg width="3" height="16" viewBox="0 0 3 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg width="3" height="16" viewBox="0 0 3 16" fill="none" xmlns="http:www.w3.org/2000/svg">
 						<circle cx="1.5" cy="2" r="1.5"/>
 						<circle cx="1.5" cy="8" r="1.5" />
 						<circle cx="1.5" cy="14" r="1.5"/>

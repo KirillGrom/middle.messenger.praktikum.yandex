@@ -1,12 +1,12 @@
 import BaseApi from '../../modules/http/baseApi';
-import {signUpType, singInType} from '../../controllers/auth/auth.type';
+import {signUpData, singInData} from '../../controllers/auth/auth.type';
 
-export default class AuthApi extends BaseApi {
-	constructor(baseUrl:string) {
-		super({baseUrl, endpoint: 'auth'});
+class AuthApi extends BaseApi {
+	constructor() {
+		super({endpoint: 'auth'});
 	}
 
-	public async singUp(data: signUpType): Promise<XMLHttpRequest> {
+	public singUp(data: signUpData): Promise<XMLHttpRequest> {
 		const options = {
 			data: JSON.stringify(data),
 			timeout: 3000,
@@ -14,11 +14,11 @@ export default class AuthApi extends BaseApi {
 				'content-type': 'application/json',
 			},
 		};
-		const response = await this.http.post(this.getUrl('signup'), options);
-		return response;
+
+		return this.http.post(this.getUrl('signup'), options);
 	}
 
-	public async signIn(data: singInType): Promise<XMLHttpRequest> {
+	public signIn(data: singInData): Promise<XMLHttpRequest> {
 		const options = {
 			data: JSON.stringify(data),
 			timeout: 3000,
@@ -26,20 +26,20 @@ export default class AuthApi extends BaseApi {
 				'content-type': 'application/json',
 			},
 		};
-		const response = await this.http.post(this.getUrl('signin'), options);
-		return response;
+
+		return this.http.post(this.getUrl('signin'), options);
 	}
 
-	public async user(): Promise<XMLHttpRequest> {
+	public user(): Promise<XMLHttpRequest> {
 		const options = {
 			timeout: 3000,
 			headers: {},
 		};
-		const response = await this.http.get(this.getUrl('user'), options);
-		return response;
+
+		return this.http.get(this.getUrl('user'), options);
 	}
 
-	public async logout(): Promise<XMLHttpRequest> {
+	public logout(): Promise<XMLHttpRequest> {
 		const options = {
 			timeout: 3000,
 			credentials: 'include',
@@ -47,7 +47,8 @@ export default class AuthApi extends BaseApi {
 				'content-type': 'application/json',
 			},
 		};
-		const response = await this.http.post(this.getUrl('logout'), options);
-		return response;
+		return this.http.post(this.getUrl('logout'), options);
 	}
 }
+
+export default new AuthApi();

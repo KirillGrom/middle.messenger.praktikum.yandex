@@ -1,12 +1,12 @@
 import BaseApi from '../../modules/http/baseApi';
-import {AddUsersOrDeleteType, ChatCreateType, ChatType} from '../../controllers/chat/chat.type';
+import {AddUsersOrDeleteData, ChatCreateData, ChatData} from '../../controllers/chat/chat.type';
 
-export default class ChatApi extends BaseApi {
-	constructor(baseUrl: string) {
-		super({baseUrl, endpoint: 'chats'});
+class ChatApi extends BaseApi {
+	constructor() {
+		super({endpoint: 'chats'});
 	}
 
-	public async chats(data: ChatType): Promise<XMLHttpRequest> {
+	public chats(data: ChatData): Promise<XMLHttpRequest> {
 		const options = {
 			data: JSON.stringify(data),
 			timeout: 3000,
@@ -14,11 +14,11 @@ export default class ChatApi extends BaseApi {
 				'content-type': 'application/json',
 			},
 		};
-		const response = await this.http.get(this.getUrl(''), options);
-		return response;
+
+		return this.http.get(this.getUrl(''), options);
 	}
 
-	public async createChat(data: ChatCreateType): Promise<XMLHttpRequest> {
+	public createChat(data: ChatCreateData): Promise<XMLHttpRequest> {
 		const options = {
 			data: JSON.stringify(data),
 			timeout: 3000,
@@ -26,11 +26,11 @@ export default class ChatApi extends BaseApi {
 				'content-type': 'application/json',
 			},
 		};
-		const response = await this.http.post(this.getUrl(''), options);
-		return response;
+
+		return this.http.post(this.getUrl(''), options);
 	}
 
-	public async addUsers(data: AddUsersOrDeleteType): Promise<XMLHttpRequest> {
+	public addUsers(data: AddUsersOrDeleteData): Promise<XMLHttpRequest> {
 		const options = {
 			data: JSON.stringify(data),
 			timeout: 3000,
@@ -38,11 +38,11 @@ export default class ChatApi extends BaseApi {
 				'content-type': 'application/json',
 			},
 		};
-		const response = await this.http.put(this.getUrl('users'), options);
-		return response;
+
+		return this.http.put(this.getUrl('users'), options);
 	}
 
-	public async deleteUsers(data: AddUsersOrDeleteType): Promise<XMLHttpRequest> {
+	public deleteUsers(data: AddUsersOrDeleteData): Promise<XMLHttpRequest> {
 		const options = {
 			data: JSON.stringify(data),
 			timeout: 3000,
@@ -50,18 +50,20 @@ export default class ChatApi extends BaseApi {
 				'content-type': 'application/json',
 			},
 		};
-		const response = await this.http.delete(this.getUrl('users'), options);
-		return response;
+
+		return this.http.delete(this.getUrl('users'), options);
 	}
 
-	public async chatToken(id: string): Promise<XMLHttpRequest> {
+	public chatToken(id: string): Promise<XMLHttpRequest> {
 		const options = {
 			timeout: 3000,
 			headers: {
 				'content-type': 'application/json',
 			},
 		};
-		const response = await this.http.post(this.getUrl(`token/${id}`), options);
-		return response;
+
+		return this.http.post(this.getUrl(`token/${id}`), options);
 	}
 }
+
+export default new ChatApi();

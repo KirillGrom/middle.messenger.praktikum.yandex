@@ -1,4 +1,3 @@
-// @ts-ignore
 import Handlebars from 'handlebars';
 import Block from '../../modules/Block';
 import indexTmpl from './index.tmpl';
@@ -7,13 +6,13 @@ import Main from '../../components/main';
 import AuthController from '../../controllers/auth/auth.controller';
 import ChatController from '../../controllers/chat/chat.controller';
 
-const authController = new AuthController();
-const chatController = new ChatController();
-
 export default class Index extends Block {
 	constructor() {
-		authController.user();
-		chatController.chats({offset: 0, limit: 10, title: ''});
+		try {
+			AuthController.user();
+			ChatController.chats({offset: 0, limit: 10, title: ''});
+		} catch (error) {}
+
 		const components = {
 			aside: new Aside({}),
 			main: new Main({

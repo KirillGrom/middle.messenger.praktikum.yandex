@@ -3,22 +3,21 @@ import router from '../../services/router';
 import validatorForm from '../../utils/validatorForm';
 import {singInRules, singUpRules} from './validate.rules';
 import Store from '../../modules/Store';
-import {signUpType, singInType} from './auth.type';
-import enrichUrl, {API_HOST} from '../../utils/enrichUrl';
+import {signUpData, singInData} from './auth.type';
+import enrichUrl from '../../utils/enrichUrl';
+import {Valid} from '../../utils/constants/valid';
 
-const storeInstance = new Store();
-const authApi = new AuthApi(API_HOST);
 const singUpValidator = validatorForm(singUpRules);
-const singInpValidator = validatorForm(singInRules);
+const singInValidator = validatorForm(singInRules);
 
-export default class AuthController {
-	public async signUp(data: signUpType): Promise<void> {
+class AuthController {
+	public async signUp(data: signUpData): Promise<void> {
 		if (!singUpValidator(data)) {
-			return;
+			throw Error(Valid.noValid);
 		}
 
 		try {
-			const {status} = await authApi.singUp(data);
+			const {status} = await AuthApi.singUp(data);
 			if (status === 200) {
 				router.go('/');
 			}
@@ -27,13 +26,13 @@ export default class AuthController {
 		}
 	}
 
-	public async signIn(data: singInType): Promise<void> {
-		if (!singInpValidator(data)) {
-			return;
+	public async signIn(data: singInData): Promise<void> {
+		if (!singInValidator(data)) {
+			throw Error(Valid.noValid);
 		}
 
 		try {
-			const response = await authApi.signIn(data);
+			const response = await AuthApi.signIn(data);
 			if (response.status === 200) {
 				router.go('/');
 			}
@@ -44,11 +43,11 @@ export default class AuthController {
 
 	public async user(): Promise<void> {
 		try {
-			const {status, response} = await authApi.user();
+			const {status, response} = await AuthApi.user();
 			if (status === 200) {
 				const data = JSON.parse(response);
 				data.avatar = enrichUrl(`resources/${data.avatar}`);
-				storeInstance.commit('user', data);
+				Store.commit('user', data);
 			}
 		} catch (error) {
 			throw Error(error);
@@ -57,7 +56,7 @@ export default class AuthController {
 
 	public async logout(): Promise<void> {
 		try {
-			const response = await authApi.logout();
+			const response = await AuthApi.logout();
 			if (response.status === 200) {
 				router.go('/login');
 			}
@@ -66,3 +65,5 @@ export default class AuthController {
 		}
 	}
 }
+
+export default new AuthController();

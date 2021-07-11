@@ -3,7 +3,6 @@ import Handlebars from 'handlebars';
 import {expect} from 'chai';
 import globalWindow from '../../../test/globalWindow';
 import Block from './index';
-console.log(globalWindow);
 
 const tmpl = '<div>{{text}}</div>';
 class ComponentTest extends Block {

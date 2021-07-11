@@ -1,4 +1,4 @@
-export type profileEditType = {
+export type profileEditData = {
 	'first_name': string;
 	'second_name': string;
 	'display_name': string;
@@ -7,11 +7,11 @@ export type profileEditType = {
 	'phone': string;
 }
 
-export type passwordEditType = {
+export type passwordEditData = {
 	oldPassword: string;
 	newPassword: string;
 }
 
-export type userSearch = {
+export type userSearchData = {
 	login: string;
 }

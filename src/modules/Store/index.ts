@@ -3,18 +3,12 @@ import {EventBusType} from '../../types/eventBus.type';
 import mutation from './mutation';
 import {EVENTS} from './events';
 
-export default class Store {
-	private static __instance: Store;
+class Store {
 	private state: Object;
 	public eventBus: EventBusType;
 	public mutations: Record<string, Function>;
 
 	constructor() {
-		if (Store.__instance) {
-			// eslint-disable-next-line no-constructor-return
-			return Store.__instance;
-		}
-
 		this.state = {
 			user: {},
 			chats: [],
@@ -25,7 +19,6 @@ export default class Store {
 
 		this.mutations = mutation;
 
-		Store.__instance = this;
 		this.state = this._makeStateProxy(this.state);
 		this.eventBus = new EventBus();
 		this.eventBus.on(EVENTS.FLOW_SDU, () => {});
@@ -67,3 +60,5 @@ export default class Store {
 		}
 	}
 }
+
+export default new Store();

@@ -1,17 +1,15 @@
 // @ts-ignore
 import {v4 as makeUUID} from 'uuid';
 import EventBus from '../EventBus';
-import {BlockType} from '../../types/block.type';
+import {BlockType, IBlock} from '../../types/block.type';
 import {EventBusType} from '../../types/eventBus.type';
-import Store from '../Store';
-import {EVENTS} from '../Store/events';
 
 export type metaType = {
 	tagName: string;
 	props: any;
 }
 
-export default class Block {
+export default class Block implements IBlock {
 	static EVENTS = {
 		INIT: 'init',
 		FLOW_CDM: 'flow:component-did-mount',
@@ -24,7 +22,6 @@ export default class Block {
 	_meta: metaType;
 	_id: string;
 	props: any;
-	store: Store | Object;
 
 	/** JSDoc
 	 * @param {string} tagName
@@ -33,7 +30,8 @@ export default class Block {
 	 * @param store
 	 * @returns {void}
 	 */
-	constructor(tagName: string, props: BlockType, store = {}) {
+
+	constructor(tagName: string, props: BlockType) {
 		this._meta = {
 			tagName,
 			props,
@@ -41,7 +39,6 @@ export default class Block {
 
 		this._id = makeUUID();
 		this.props = this._makePropsProxy({...props, _id: this._id});
-		this.store = store;
 
 		this.eventBus = new EventBus();
 
@@ -108,9 +105,6 @@ export default class Block {
 	_componentDidMount(): void {
 		this.componentDidMount();
 		this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
-		if (this.store instanceof Store) {
-			this.store.eventBus.on(EVENTS.FLOW_SDU, this._render.bind(this));
-		}
 	}
 
 	_componentDidUpdate<T>(oldProps: T, newProps: T): void {

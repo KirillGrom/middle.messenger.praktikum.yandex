@@ -1,4 +1,4 @@
-export type signUpType = {
+export type signUpData = {
 	'first_name': string;
 	'second_name': string;
 	'login': string;
@@ -7,7 +7,7 @@ export type signUpType = {
 	'phone': string;
 }
 
-export type singInType = {
+export type singInData = {
 	login: string;
 	password: string;
 }

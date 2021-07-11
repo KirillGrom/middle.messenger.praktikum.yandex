@@ -1,4 +1,3 @@
-// @ts-ignore
 import Handlebars from 'handlebars';
 import LinkTmpl from './link.tmpl';
 import Block from '../../modules/Block';

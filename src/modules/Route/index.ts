@@ -1,6 +1,6 @@
 import {renderInDOM} from '../../utils/renderInDOM';
 import {RouteType} from './route.type';
-import {IPage} from '../../types/page.type';
+import {IBlock} from '../../types/block.type';
 
 function isEqual(lhs: string, rhs: string): boolean {
 	return lhs === rhs;
@@ -8,11 +8,11 @@ function isEqual(lhs: string, rhs: string): boolean {
 
 export default class Route {
 	private _pathname: string;
-	private readonly _blockClass: IPage;
-	private _block: null | IPage;
+	private readonly _blockClass: IBlock;
+	private _block: null | IBlock;
 	private _props: RouteType;
 
-	constructor(pathname: string, view: IPage, props: RouteType) {
+	constructor(pathname: string, view: IBlock, props: RouteType) {
 		this._pathname = pathname;
 		this._blockClass = view;
 		this._block = null;

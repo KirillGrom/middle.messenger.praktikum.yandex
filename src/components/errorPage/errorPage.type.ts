@@ -1,5 +1,5 @@
 export type ErrorPageType = {
     code: string;
     text: string;
-    events: Record<string, Function>;
+    events?: Record<string, Function>;
 }

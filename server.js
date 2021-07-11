@@ -8,10 +8,7 @@ const distPath = '/dist';
 app.use(express.static(__dirname + distPath));
 
 app.get('/*', (req, res) => {
-	const path = __dirname + `${distPath}${req.path}`;
-	fs.access(path, fs.constants.F_OK, e => {
-		res.sendFile(__dirname + `${distPath}/index.html`);
-	});
+	res.sendFile(__dirname + `${distPath}/index.html`);
 });
 
 app.listen(port, () => {

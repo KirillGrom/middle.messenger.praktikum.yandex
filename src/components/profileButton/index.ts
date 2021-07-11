@@ -1,4 +1,3 @@
-// @ts-ignore
 import Handlebars from 'handlebars';
 import Block from '../../modules/Block';
 import profileButtonTmpl from './profileButton.tmpl';

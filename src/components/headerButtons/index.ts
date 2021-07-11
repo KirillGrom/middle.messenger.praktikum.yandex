@@ -1,4 +1,3 @@
-// @ts-ignore
 import Handlebars from 'handlebars';
 import Block from '../../modules/Block';
 import {HeaderButtonsType} from './headerButtons.type';

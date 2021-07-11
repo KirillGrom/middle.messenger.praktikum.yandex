@@ -1,4 +1,3 @@
-// @ts-ignore
 import Handlebars from 'handlebars';
 import passwordTmpl from './password.tmpl';
 import Block from '../../modules/Block';

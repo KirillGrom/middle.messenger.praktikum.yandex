@@ -1,7 +1,7 @@
 import Http from './index';
+import {API_HOST} from '../../utils/constants/API_HOST';
 
 type configType = {
-	baseUrl: string;
 	endpoint: string;
 }
 
@@ -11,7 +11,7 @@ export default class BaseApi {
 	http: Http;
 
 	constructor(config: configType) {
-		this.baseUrl = config.baseUrl;
+		this.baseUrl = API_HOST;
 		this.endpoint = config.endpoint;
 		this.http = new Http();
 	}

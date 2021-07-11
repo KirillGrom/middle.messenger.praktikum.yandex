@@ -1,4 +1,3 @@
-// @ts-ignore
 import Handlebars from 'handlebars';
 import MessageTmpl from './message.tmpl';
 import Block from '../../modules/Block';

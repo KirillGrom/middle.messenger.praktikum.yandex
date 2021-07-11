@@ -1,4 +1,3 @@
-// @ts-ignore
 import Handlebars from 'handlebars';
 import ProfileBlockTmpl from './profileBlock.tmpl';
 import Block from '../../modules/Block';
@@ -12,10 +11,9 @@ import Store from '../../modules/Store';
 import ButtonAvatar from '../buttonAvatar';
 import Modal from '../modal';
 import UserController from '../../controllers/user/user.controller';
-
-const authController = new AuthController();
-const userController = new UserController();
-const storeInstance = new Store();
+import FormService from '../../modules/Form';
+import {Valid} from '../../utils/constants/valid';
+import {EVENTS} from '../../modules/Store/events';
 
 export default class ProfileBlock extends Block {
 	constructor(props: ProfileBlockType) {
@@ -33,11 +31,19 @@ export default class ProfileBlock extends Block {
 					event.preventDefault();
 					const form = event.target as HTMLFormElement;
 					const formData = new FormData(form);
-					userController.avatarEdit(formData);
+					try {
+						UserController.avatarEdit(formData);
+					} catch (error) {
+						if (error === Valid.noValid) {
+							FormService.checkValidating(event);
+						}
+					}
+
 					modal.hide();
 				},
 			},
 		});
+		const
 		modal.hide();
 		const components = {
 			buttonAvatar: new ButtonAvatar({
@@ -47,7 +53,13 @@ export default class ProfileBlock extends Block {
 					},
 				},
 			}),
-			profileBlockItem: props.inputList.map(data => new ProfileBlockItem({...data, tagName: 'li', value: () => get(storeInstance.getState(), `user.${data.name}`)}, storeInstance)),
+			profileBlockItem: props.inputList.map(data =>
+				new ProfileBlockItem(
+					{...data, tagName:
+						'li', value: () => get(Store.getState(),
+						`user.${data.name}`)}
+				)),
+
 			linkProfileEdit: new Link({
 				linkName: 'Изменить данные',
 				events: {
@@ -71,13 +83,19 @@ export default class ProfileBlock extends Block {
 				events: {
 					click: (event: Event) => {
 						event.preventDefault();
-						authController.logout();
+						try {
+							AuthController.logout();
+						} catch (error) {}
 					},
 				},
 			}),
 			modal,
 		};
-		super('div', {...props, components}, storeInstance);
+		super('div', {...props, components});
+	}
+
+	componentDidMount() {
+		Store.eventBus.on(EVENTS.FLOW_SDU, this.setProps.bind(this, this.props));
 	}
 
 	render(): Function {

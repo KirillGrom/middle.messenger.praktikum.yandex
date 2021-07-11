@@ -1,4 +1,3 @@
-// @ts-ignore
 import Handlebars from 'handlebars';
 import Block from '../../modules/Block';
 import Profile from '../../components/profile';
@@ -7,11 +6,12 @@ import profileTmpl from './profileEdit.tmpl';
 import AuthController from '../../controllers/auth/auth.controller';
 import {typeEdit} from '../../components/profile/profile.type';
 
-const authController = new AuthController();
-
 export default class ProfileEditPage extends Block {
 	constructor() {
-		authController.user();
+		try {
+			AuthController.user();
+		} catch (error) {}
+
 		const components = {
 			profile: new Profile({
 				inputList: ProfileEditData,

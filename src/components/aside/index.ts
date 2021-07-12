@@ -34,7 +34,7 @@ export default class Aside extends Block {
 						ChatController.createChat(getFormDataValue(formData));
 					} catch (error) {
 						if (error === Valid.noValid) {
-							FormService.checkValidating(event);
+							FormService.showNoValidField(event);
 						}
 					}
 

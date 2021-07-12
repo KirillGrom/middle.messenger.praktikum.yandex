@@ -14,7 +14,11 @@ export default class ProfileEdit extends Block {
 			avatar: new Avatar({
 				imgSrc: () => get(Store.getState(), 'user.avatar'),
 			}),
-			profileBlockItem: props.inputList.map(data => new ProfileBlockItem({...data, tagName: 'div', value: () => get(Store.getState(), `user.${data.name}`)}, Store)),
+			profileBlockItem: props.inputList.map(data =>
+				new ProfileBlockItem({
+					...data,
+					tagName: 'div',
+					value: () => get(Store.getState(), `user.${data.name}`)})),
 		};
 		super('form', {...props, components});
 	}

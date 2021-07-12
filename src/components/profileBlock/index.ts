@@ -35,7 +35,7 @@ export default class ProfileBlock extends Block {
 						UserController.avatarEdit(formData);
 					} catch (error) {
 						if (error === Valid.noValid) {
-							FormService.checkValidating(event);
+							FormService.showNoValidField(event);
 						}
 					}
 
@@ -53,11 +53,11 @@ export default class ProfileBlock extends Block {
 				},
 			}),
 			profileBlockItem: props.inputList.map(data =>
-				new ProfileBlockItem(
-					{...data, tagName:
-						'li', value: () => get(Store.getState(),
-						`user.${data.name}`)}
-				)),
+				new ProfileBlockItem({
+					...data,
+					tagName: 'li',
+					value: () => get(Store.getState(), `user.${data.name}`)}),
+			),
 
 			linkProfileEdit: new Link({
 				linkName: 'Изменить данные',

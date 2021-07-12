@@ -1,5 +1,5 @@
 class FormService {
-	public checkValidating(event:Event):void {
+	public showNoValidField(event:Event):void {
 		event.preventDefault();
 		const targetElement = event.currentTarget as HTMLFormElement;
 		const formElements = targetElement.querySelectorAll('input');

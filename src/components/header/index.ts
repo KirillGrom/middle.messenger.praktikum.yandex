@@ -25,13 +25,16 @@ export default class Header extends Block {
 			},
 			events: {
 				submit: (event: Event) => {
-					FormService.checkValidating(event);
 					const form = event.target as HTMLFormElement;
 					const formData = new FormData(form);
 					try {
 						ChatController.addUsers(getFormDataValue(formData));
 					} catch (error) {
-						FormService.checkValidating(event);
+						if (error === Valid.noValid) {
+							FormService.showNoValidField(event);
+						} else {
+							console.error(error);
+						}
 					}
 
 					modalAddUser.hide();
@@ -49,14 +52,15 @@ export default class Header extends Block {
 			},
 			events: {
 				submit: (event: Event) => {
-					FormService.checkValidating(event);
 					const form = event.target as HTMLFormElement;
 					const formData = new FormData(form);
 					try {
 						ChatController.deleteUsers(getFormDataValue(formData));
 					} catch (error) {
 						if (error === Valid.noValid) {
-							FormService.checkValidating(event);
+							FormService.showNoValidField(event);
+						} else {
+							console.error(error);
 						}
 					}
 

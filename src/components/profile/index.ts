@@ -34,7 +34,7 @@ export default class Profile extends Block {
 								UserController.passwordEdit(getFormDataValue(formData));
 							}
 						} catch (error) {
-							FormService.checkValidating(event);
+							FormService.showNoValidField(event);
 						}
 					},
 				},

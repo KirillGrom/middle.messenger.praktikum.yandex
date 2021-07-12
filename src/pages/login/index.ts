@@ -30,7 +30,7 @@ export default class Login extends Block {
 							AuthController.signIn(getFormDataValue(formData));
 						} catch (error) {
 							if (error === Valid.noValid) {
-								FormService.checkValidating(event);
+								FormService.showNoValidField(event);
 							}
 						}
 					},

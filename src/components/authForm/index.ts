@@ -1,4 +1,3 @@
-// @ts-ignore
 import Handlebars from 'handlebars';
 import AuthFormTmpl from './authForm.tmpl';
 import Block from '../../modules/Block';

@@ -1,0 +1,46 @@
+.modal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba($gray,0.6);
+}
+.box-modal {
+  margin: auto;
+  padding: 40px 30px;
+  background-color: $white;
+  border-radius: 12px;
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    margin-bottom: 50px;
+
+    @include font(16, 20);
+
+    &--error {
+      color: $red;
+    }
+  }
+
+  &__actions {
+    margin-top: 30px;
+    width: 100%;
+  }
+
+  &__error {
+    display: block;
+
+    @include font(12, 12);
+
+    padding: 14px 0 0;
+    color: $red;
+    text-align: center;
+  }
+}

@@ -14,4 +14,12 @@
     margin-left: auto;
     margin-bottom: 19px;
   }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    div {
+      flex-grow: 1;
+    }
+  }
 }

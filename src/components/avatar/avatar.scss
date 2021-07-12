@@ -28,4 +28,8 @@
     object-fit: cover;
     object-position: center;
   }
+
+  &::before {
+    display: none;
+  }
 }

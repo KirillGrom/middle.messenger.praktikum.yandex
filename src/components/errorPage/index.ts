@@ -1,4 +1,3 @@
-// @ts-ignore
 import Handlebars from 'handlebars';
 import ErrorPageTmpl from './errorPage.tmpl';
 import Block from '../../modules/Block';

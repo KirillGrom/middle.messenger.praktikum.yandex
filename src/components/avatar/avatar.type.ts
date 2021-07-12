@@ -1,3 +1,4 @@
 export type AvatarType = {
-    imgSrc: string;
+	imgSrc: string | Function;
+	events?: Record<string, Function>;
 }

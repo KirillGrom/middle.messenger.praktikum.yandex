@@ -1,8 +1,8 @@
 export type ProfileBlockItemType = {
 	label: string;
 	name: string;
-	value: string;
+	value: Function;
 	disabled?: boolean;
-	type: string
+	type: string;
 	tagName: string;
 }

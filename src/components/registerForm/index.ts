@@ -1,4 +1,3 @@
-// @ts-ignore
 import Handlebars from 'handlebars';
 import registerFormTmpl from './registerForm.tmpl';
 import Block from '../../modules/Block';

@@ -1,4 +1,4 @@
 export type LinkType = {
-    href: string;
     linkName: string;
+    events: Record<string, Function>;
 }

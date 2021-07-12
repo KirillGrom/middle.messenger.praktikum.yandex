@@ -4,9 +4,11 @@ UI проекта  https://www.figma.com/file/vDGdT1VRLSwmKMx7cTFX1m/ya-msg?node
 
 NETLIFY https://serene-goldstine-4b101a.netlify.app/
 
-Sprint 2
-PULL REQUEST https://github.com/KirillGrom/middle.messenger.praktikum.yandex/pull/3
+Sprint 3
+PULL REQUEST https://github.com/KirillGrom/middle.messenger.praktikum.yandex/pull/6
 
+
+Sprint 1
 ЗАПУСК ПРОЕКТА
 Клонировать проект c HTTPS
 git clone https://github.com/KirillGrom/middle.messenger.praktikum.yandex.git
@@ -23,10 +25,12 @@ npm run dev (запуск dev режима)
 или
 npm run start (запуск локального сервера сборки)
 
+npm run test (запуск тестов)
+
 TODO
 
 UI разобрать на компоненты
 
-Написать и прикрутить свой шаблонизатор
+Функционал: создание пользователя , редактирование данных пользователя , создание чатов , добавление пользователей в чат и их удаление из чата 
 
 

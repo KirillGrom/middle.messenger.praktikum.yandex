@@ -6,12 +6,14 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "sourceMap": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "esModuleInterop": true,
   },
   "exclude": [
     "node_modules",
     "dist",
     ".cache",
-    ".github"
+    ".github",
+    "handlebars"
   ]
 }

@@ -13,14 +13,22 @@ import {userSearchData} from '../user/user.type';
 import UserController from '../user/user.controller';
 import get from '../../utils/get';
 import WebSocketModule from '../../modules/WebSocketModule';
+import validatorForm from '../../utils/validatorForm';
+import {loginRules} from './validate.rules';
+import {Valid} from '../../utils/constants/valid';
 
 const webSocketModule = new WebSocketModule();
+const loginValidator = validatorForm(loginRules);
 
 class ChatController {
 	public async chats(data: ChatData): Promise<void> {
 		try {
-			const {response} = await ChatApi.chats(data);
-			Store.commit('chats', JSON.parse(response).map((res: ChatResponseType) => mapChats(res)));
+			const {status, response} = await ChatApi.chats(data);
+			if (status === 200) {
+				Store.commit('chats', JSON.parse(response).map((res: ChatResponseType) => mapChats(res)));
+			} else {
+				router.go('/login');
+			}
 		} catch (error) {
 			throw Error(error);
 		}
@@ -61,6 +69,10 @@ class ChatController {
 	}
 
 	public async addUsers(data: userSearchData): Promise<void> {
+		if (!loginValidator) {
+			throw Error(Valid.noValid);
+		}
+
 		try {
 			const users = await UserController.userSearch(data);
 			if (Array.isArray(users) && users.length) {
@@ -78,6 +90,10 @@ class ChatController {
 	}
 
 	public async deleteUsers(data: userSearchData) {
+		if (!loginValidator) {
+			throw Error(Valid.noValid);
+		}
+
 		try {
 			const users = await UserController.userSearch(data);
 			if (Array.isArray(users) && users.length) {

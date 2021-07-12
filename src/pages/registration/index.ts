@@ -30,7 +30,7 @@ export default class Registration extends Block {
 							AuthController.signUp(getFormDataValue(formData));
 						} catch (error) {
 							if (error === Valid.noValid) {
-								FormService.checkValidating(event);
+								FormService.showNoValidField(event);
 							}
 						}
 					},

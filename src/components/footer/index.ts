@@ -25,7 +25,7 @@ export default class Footer extends Block {
 						try {
 							ChatController.sendMessage(getFormDataValue(formData));
 						} catch (error) {
-							FormService.checkValidating(event);
+							FormService.showNoValidField(event);
 						}
 					},
 				},

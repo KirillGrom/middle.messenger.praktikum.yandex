@@ -6,6 +6,7 @@ import {passwordEditData, profileEditData, userSearchData} from './user.type';
 import Store from '../../modules/Store';
 import enrichUrl from '../../utils/enrichUrl';
 import {UserType} from '../auth/auth.type';
+import {Valid} from '../../utils/constants/valid';
 
 const profileEditValidator = validatorForm(profileEditRules);
 const passwordEditValidator = validatorForm(passwordEditRules);
@@ -14,7 +15,7 @@ const userSearchValidator = validatorForm(userSearchRules);
 class UserController {
 	public async profileEdit(data: profileEditData): Promise<void> {
 		if (!profileEditValidator(data)) {
-			return;
+			throw Error(Valid.noValid);
 		}
 
 		try {
@@ -29,7 +30,7 @@ class UserController {
 
 	public async passwordEdit(data: passwordEditData): Promise<void> {
 		if (!passwordEditValidator(data)) {
-			return;
+			throw Error(Valid.noValid);
 		}
 
 		try {
@@ -55,7 +56,7 @@ class UserController {
 
 	public async userSearch(data: userSearchData): Promise<UserType[] | undefined> {
 		if (!userSearchValidator(data)) {
-			return;
+			throw Error(Valid.noValid);
 		}
 
 		try {

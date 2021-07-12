@@ -13,6 +13,7 @@ class AuthApi extends BaseApi {
 			headers: {
 				'content-type': 'application/json',
 			},
+			IsWithCredentials: false,
 		};
 
 		return this.http.post(this.getUrl('signup'), options);

@@ -6,6 +6,7 @@ import FormService from '../../modules/Form';
 import {BlockType} from '../../types/block.type';
 import getFormDataValue from '../../utils/getFormDataValue';
 import ChatController from '../../controllers/chat/chat.controller';
+import {Valid} from '../../utils/constants/valid';
 
 export default class Footer extends Block {
 	constructor(props: BlockType) {
@@ -18,14 +19,16 @@ export default class Footer extends Block {
 					focusin: (event:Event) => {
 						FormService.inputEventHandler(event);
 					},
-					submit: (event:Event) => {
+					submit: async (event:Event) => {
 						event.preventDefault();
 						const form = event.target as HTMLFormElement;
 						const formData = new FormData(form);
 						try {
-							ChatController.sendMessage(getFormDataValue(formData));
+							await ChatController.sendMessage(getFormDataValue(formData));
 						} catch (error) {
-							FormService.showNoValidField(event);
+							if (error.message === Valid.noValid) {
+								FormService.showNoValidField(event);
+							}
 						}
 					},
 				},

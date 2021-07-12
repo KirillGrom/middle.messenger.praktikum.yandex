@@ -24,16 +24,14 @@ export default class Header extends Block {
 				name: 'login',
 			},
 			events: {
-				submit: (event: Event) => {
+				submit: async (event: Event) => {
 					const form = event.target as HTMLFormElement;
 					const formData = new FormData(form);
 					try {
-						ChatController.addUsers(getFormDataValue(formData));
+						await ChatController.addUsers(getFormDataValue(formData));
 					} catch (error) {
-						if (error === Valid.noValid) {
+						if (error.message === Valid.noValid) {
 							FormService.showNoValidField(event);
-						} else {
-							console.error(error);
 						}
 					}
 
@@ -51,16 +49,14 @@ export default class Header extends Block {
 				name: 'login',
 			},
 			events: {
-				submit: (event: Event) => {
+				submit: async (event: Event) => {
 					const form = event.target as HTMLFormElement;
 					const formData = new FormData(form);
 					try {
-						ChatController.deleteUsers(getFormDataValue(formData));
+						await ChatController.deleteUsers(getFormDataValue(formData));
 					} catch (error) {
 						if (error === Valid.noValid) {
 							FormService.showNoValidField(event);
-						} else {
-							console.error(error);
 						}
 					}
 

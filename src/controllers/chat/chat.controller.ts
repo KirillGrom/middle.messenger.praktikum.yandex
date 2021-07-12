@@ -14,11 +14,12 @@ import UserController from '../user/user.controller';
 import get from '../../utils/get';
 import WebSocketModule from '../../modules/WebSocketModule';
 import validatorForm from '../../utils/validatorForm';
-import {loginRules} from './validate.rules';
+import {loginRules, messageRules} from './validate.rules';
 import {Valid} from '../../utils/constants/valid';
 
 const webSocketModule = new WebSocketModule();
 const loginValidator = validatorForm(loginRules);
+const messageValidator = validatorForm(messageRules);
 
 class ChatController {
 	public async chats(data: ChatData): Promise<void> {
@@ -111,6 +112,10 @@ class ChatController {
 	}
 
 	public async sendMessage(data: ChatMessage) {
+		if (!messageValidator) {
+			throw Error(Valid.noValid);
+		}
+
 		await webSocketModule.sendMsg(data.message);
 	}
 }

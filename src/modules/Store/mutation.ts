@@ -4,7 +4,6 @@ import {ChatItemType} from '../../components/chatItem/chatItem.type';
 export default {
 	user: (state: Record<string, any>, payload: UserType) => {
 		state.user = payload;
-
 		return state;
 	},
 

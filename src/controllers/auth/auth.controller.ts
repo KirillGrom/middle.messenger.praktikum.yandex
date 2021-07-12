@@ -46,8 +46,10 @@ class AuthController {
 			const {status, response} = await AuthApi.user();
 			if (status === 200) {
 				const data = JSON.parse(response);
-				data.avatar = enrichUrl(`resources/${data.avatar}`);
+				data.avatar = data.avatar === null ? '' : enrichUrl(`resources/${data.avatar}`);
 				Store.commit('user', data);
+			} else {
+				router.go('/login');
 			}
 		} catch (error) {
 			throw Error(error);

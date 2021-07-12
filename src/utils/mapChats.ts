@@ -3,11 +3,11 @@ import enrichUrl from './enrichUrl';
 import dateFormat from './dateFormat';
 
 export default (chat: ChatResponseType) => {
-	const lastMessage = chat.last_message ? JSON.parse(chat.last_message) : undefined;
+	const lastMessage = chat.last_message ? chat.last_message : undefined;
 	return {
 		id: chat.id,
 		name: chat.title,
-		imgSrc: chat.avatar ? enrichUrl(`resources/${chat.avatar}`) : '',
+		imgSrc: chat.avatar === null ? '' : enrichUrl(`resources/${chat.avatar}`),
 		datetime: dateFormat(lastMessage?.time || ''),
 		lastMessageText: lastMessage?.content || '',
 		countNewMessage: chat.unread_count,

@@ -1,5 +1,6 @@
 import Route from '../Route';
 import {IRoute} from '../Route/route.type';
+import {IBlock} from '../../types/block.type';
 
 export default class Router {
 	private routes: IRoute[];
@@ -23,7 +24,7 @@ export default class Router {
 	}
 
 	use(pathname: string, block: Object) {
-		const route = new Route(pathname, block, {rootQuery: this._rootQuery});
+		const route = new Route(pathname, block as IBlock, {rootQuery: this._rootQuery});
 
 		this.routes.push(route);
 

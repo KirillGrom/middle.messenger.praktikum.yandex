@@ -9,6 +9,7 @@ import ProfileButton from '../profileButton';
 import router from '../../services/router';
 import UserController from '../../controllers/user/user.controller';
 import getFormDataValue from '../../utils/getFormDataValue';
+import {Valid} from '../../utils/constants/valid';
 
 export default class Profile extends Block {
 	constructor(props: ProfileType) {
@@ -22,19 +23,22 @@ export default class Profile extends Block {
 					focusin: (event:Event) => {
 						FormService.inputEventHandler(event);
 					},
-					submit: (event:Event) => {
+					submit: async (event:Event) => {
+						event.preventDefault();
 						const form = event.target as HTMLFormElement;
 						const formData = new FormData(form);
 						try {
 							if (props.typeEdit === typeEdit.profile) {
-								UserController.profileEdit(getFormDataValue(formData));
+								await UserController.profileEdit(getFormDataValue(formData));
 							}
 
 							if (props.typeEdit === typeEdit.password) {
-								UserController.passwordEdit(getFormDataValue(formData));
+								await UserController.passwordEdit(getFormDataValue(formData));
 							}
 						} catch (error) {
-							FormService.showNoValidField(event);
+							if (error.message === Valid.noValid) {
+								FormService.showNoValidField(event);
+							}
 						}
 					},
 				},
@@ -46,7 +50,7 @@ export default class Profile extends Block {
 				events: {
 					click: (event: Event) => {
 						event.preventDefault();
-						router.go('/chats');
+						router.go('/');
 					},
 				},
 			}),

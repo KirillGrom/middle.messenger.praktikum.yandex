@@ -33,7 +33,7 @@ export default class Http {
 	delete = (url:string, options:optionsType) => this.request(url, {...options, method: METHODS.DELETE}, options.timeout);
 
 	request = (url:string, options:any, timeout = 5000):Promise<XMLHttpRequest> => {
-		const {method, headers = {}, data} = options;
+		const {method, headers = {}, data, IsWithCredentials = true} = options;
 		return new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
 
@@ -48,7 +48,7 @@ export default class Http {
 				resolve(xhr);
 			};
 
-			xhr.withCredentials = true;
+			xhr.withCredentials = IsWithCredentials;
 			xhr.onabort = reject;
 			xhr.onerror = reject;
 			xhr.timeout = timeout;

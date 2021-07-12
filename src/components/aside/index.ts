@@ -26,14 +26,14 @@ export default class Aside extends Block {
 				value: '',
 			},
 			events: {
-				submit: (event: Event) => {
+				submit: async (event: Event) => {
 					event.preventDefault();
 					const form = event.target as HTMLFormElement;
 					const formData = new FormData(form);
 					try {
-						ChatController.createChat(getFormDataValue(formData));
+						await ChatController.createChat(getFormDataValue(formData));
 					} catch (error) {
-						if (error === Valid.noValid) {
+						if (error.message === Valid.noValid) {
 							FormService.showNoValidField(event);
 						}
 					}

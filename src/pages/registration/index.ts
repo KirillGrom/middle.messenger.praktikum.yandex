@@ -22,14 +22,14 @@ export default class Registration extends Block {
 					focusin: (event:Event) => {
 						FormService.inputEventHandler(event);
 					},
-					submit: (event:Event) => {
+					submit: async (event:Event) => {
 						event.preventDefault();
 						const form = event.target as HTMLFormElement;
 						const formData = new FormData(form);
 						try {
-							AuthController.signUp(getFormDataValue(formData));
+							await AuthController.signUp(getFormDataValue(formData));
 						} catch (error) {
-							if (error === Valid.noValid) {
+							if (error.message === Valid.noValid) {
 								FormService.showNoValidField(event);
 							}
 						}

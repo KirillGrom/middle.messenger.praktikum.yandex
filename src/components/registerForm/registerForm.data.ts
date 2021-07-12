@@ -32,7 +32,7 @@ export default [
 		type: 'tel',
 		value: '',
 		name: 'phone',
-		errorText: 'Не верный формат "Телефон"',
+		errorText: 'Не верный формат "Телефон" +7(9',
 	},
 	{
 		label: 'Пароль',

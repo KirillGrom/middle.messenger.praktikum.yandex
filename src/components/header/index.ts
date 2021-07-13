@@ -25,6 +25,7 @@ export default class Header extends Block {
 			},
 			events: {
 				submit: async (event: Event) => {
+					event.preventDefault();
 					const form = event.target as HTMLFormElement;
 					const formData = new FormData(form);
 					try {
@@ -50,6 +51,7 @@ export default class Header extends Block {
 			},
 			events: {
 				submit: async (event: Event) => {
+					event.preventDefault();
 					const form = event.target as HTMLFormElement;
 					const formData = new FormData(form);
 					try {

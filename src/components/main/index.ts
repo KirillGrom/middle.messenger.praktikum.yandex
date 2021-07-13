@@ -9,6 +9,7 @@ import MessagesData from '../messages/messages.data';
 import Store from '../../modules/Store';
 import {EVENTS} from '../../modules/Store/events';
 import get from '../../utils/get';
+
 export default class Main extends Block {
 	constructor(props: MainType) {
 		const components = {

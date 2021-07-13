@@ -22,7 +22,7 @@ export type ChatsResponseType = {
 type UserChatResponse = Omit<UserType, 'id' | 'display_name' >
 
 export type ChatResponseType = {
-	id: number ;
+	id: number;
 	title: string;
 	avatar: string;
 	'unread_count': number;

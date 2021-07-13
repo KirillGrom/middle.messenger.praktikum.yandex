@@ -17,9 +17,11 @@ export default class Login extends Block {
 				enterFields: authFormData,
 				events: {
 					focusout: (event:Event) => {
+						event.preventDefault();
 						FormService.inputEventHandler(event);
 					},
 					focusin: (event:Event) => {
+						event.preventDefault();
 						FormService.inputEventHandler(event);
 					},
 					submit: async (event:Event) => {

@@ -17,13 +17,13 @@ export default class Profile extends Block {
 			profileEdit: new ProfileEdit({
 				inputList: props.inputList,
 				events: {
-					focusout: (event:Event) => {
+					focusout: (event: Event) => {
 						FormService.inputEventHandler(event);
 					},
-					focusin: (event:Event) => {
+					focusin: (event: Event) => {
 						FormService.inputEventHandler(event);
 					},
-					submit: async (event:Event) => {
+					submit: async (event: Event) => {
 						event.preventDefault();
 						const form = event.target as HTMLFormElement;
 						const formData = new FormData(form);

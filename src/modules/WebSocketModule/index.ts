@@ -67,9 +67,9 @@ export default class WebSocketModule {
 			Store.commit('clearMessage');
 		}
 
-		const chatId = get(Store.getState(), 'currentChatId');
+		const chatId = get(Store.getState(), 'currentChat.id');
 		const chatToken = get(Store.getState(), 'chatToken');
-		const userId = get(Store.getState(), 'user').id;
+		const userId = get(Store.getState(), 'user.id');
 		this.socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${chatToken}`);
 
 		this._registerEvents(this.socket);

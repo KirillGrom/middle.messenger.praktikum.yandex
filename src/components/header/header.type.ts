@@ -1,4 +1,4 @@
 export type HeaderType = {
-    name: string;
-    imgSrc: string;
+    name: Function;
+    imgSrc: Function;
 }

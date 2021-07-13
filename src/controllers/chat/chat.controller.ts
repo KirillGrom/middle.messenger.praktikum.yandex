@@ -57,14 +57,14 @@ class ChatController {
 		}
 	}
 
-	public async chatItemHandler(chatId: string): Promise<void> {
+	public async chatItemHandler(chat: ChatResponseType): Promise<void> {
 		if (router.getCurrentPathName() === '/') {
 			router.go('/chats');
 		}
 
-		if (chatId !== get(Store.getState(), 'currentChatId')) {
-			Store.commit('currentChatId', chatId);
-			await this.chatToken(chatId);
+		if (chat.id !== get(Store.getState(), 'currentChat.id')) {
+			Store.commit('currentChat', chat);
+			await this.chatToken(String(chat.id));
 			webSocketModule.connect();
 		}
 	}

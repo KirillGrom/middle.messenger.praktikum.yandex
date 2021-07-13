@@ -18,9 +18,6 @@ export default class Chat extends Block {
 			aside: new Aside({}),
 			main: new Main({
 				isEmpty: false,
-				contentHeader: '',
-				contentMain: '',
-				contentFooter: '',
 			}),
 		};
 		super('div', {components});

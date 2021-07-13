@@ -6,7 +6,9 @@ export default `
 				  <span class="chat-item__name">{{name}}</span>
 				  <time class="chat-item__datetime">{{datetime}}</time>
 				<p class="chat-item__last-message">{{lastMessageText}}</p>
-				<span class="chat-item__count-new-message" {{#if isCountNewMessageHidden}}hidden{{/if}}>{{countNewMessage}}</span>
+				{{#if isCountNewMessageHidden}}
+				<span class="chat-item__count-new-message">{{countNewMessage}}</span>
+				{{/if}}
 			</div>
 		</a>
 	</div>

@@ -12,6 +12,10 @@
     "HTMLFormElement": false,
     "window": false,
     "Event": false,
-    "XMLHttpRequest": false
+    "XMLHttpRequest": false,
+    "Window": false,
+    "History": false,
+    "FormData": false,
+    "WebSocket": false
   }
 }

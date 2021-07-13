@@ -1,6 +1,7 @@
 .message-item {
   display: flex;
   width: 100%;
+  margin-bottom: 8px;
 
   &__wrapper {
     max-width: 402px;
@@ -11,7 +12,6 @@
   &__time {
     display: block;
     text-align: right;
-
     @include font(12,12);
   }
 

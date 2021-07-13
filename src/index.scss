@@ -5,6 +5,7 @@
 @import 'style/scss/reset';
 @import 'style/scss/actions';
 @import 'style/scss/buttons';
+@import 'style/scss/modal';
 
 // Components
 @import 'components/chatItem/chatItem';
@@ -24,9 +25,9 @@
 @import 'components/authForm/authForm';
 @import 'components/enterField/enterField';
 @import 'components/registerForm/registerForm';
-@import 'components/boxModal/boxModal';
 @import 'components/errorPage/errorPage';
 @import 'components/formMsg/formMsg';
+@import 'components/createButtonChat/createButtonChat';
 
 *,
 *::after,

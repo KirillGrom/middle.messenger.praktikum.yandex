@@ -1,4 +1,3 @@
-// @ts-ignore
 import Handlebars from 'handlebars';
 import ChatItemTmpl from './chatItem.tmpl';
 import Block from '../../modules/Block';

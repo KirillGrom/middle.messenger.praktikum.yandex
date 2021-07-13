@@ -5,7 +5,3 @@ export enum pageEnum {
     profile = 'profile',
     chat = 'chat',
 }
-
-export type PageType = {
-    type: pageEnum;
-}

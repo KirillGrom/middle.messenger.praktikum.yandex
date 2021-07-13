@@ -1,4 +1,3 @@
-// @ts-ignore
 import Handlebars from 'handlebars';
 import enterFieldTmpl from './enterField.tmpl';
 import Block from '../../modules/Block';

@@ -1,28 +1,29 @@
-// @ts-ignore
 import Handlebars from 'handlebars';
 import Block from '../../modules/Block';
-import {renderInDOM} from '../../utils/renderInDOM';
 import indexTmpl from './chat.tmpl';
 import Aside from '../../components/aside';
-import {BlockType} from '../../types/block.type';
 import Main from '../../components/main';
+import AuthController from '../../controllers/auth/auth.controller';
+import ChatController from '../../controllers/chat/chat.controller';
 
-class Chat extends Block {
-	constructor(props: BlockType) {
+export default class Chat extends Block {
+	constructor() {
+		try {
+			AuthController.user();
+			ChatController.chats({offset: 0, limit: 10, title: ''});
+		} catch (error) {
+		}
+
 		const components = {
 			aside: new Aside({}),
 			main: new Main({
 				isEmpty: false,
-				contentHeader: '',
-				contentMain: '',
-				contentFooter: ''}),
+			}),
 		};
-		super('div', {...props, components});
+		super('div', {components});
 	}
 
 	render(): Function {
 		return Handlebars.compile(indexTmpl);
 	}
 }
-
-renderInDOM(document.querySelector('#app'), new Chat({}).getContent());

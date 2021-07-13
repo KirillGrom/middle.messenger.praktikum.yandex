@@ -89,6 +89,7 @@
 
 .profile-actions {
   list-style: none;
+  align-self: flex-start;
 
   &__item {
     margin-bottom: 21px;
@@ -99,12 +100,21 @@
   }
 
   &__link {
-    @include font(13,13);
-
-    color: $dark-blue;
+    & .link-wrapper {
+      justify-content: flex-start;
+    }
+    & .link {
+      @include font(13,13);
+      color: $dark-blue;
+      &::after {
+        display: none;
+      }
+    }
 
     &--red {
-      color: $red;
+      .link {
+        color: $red;
+      }
     }
   }
 }

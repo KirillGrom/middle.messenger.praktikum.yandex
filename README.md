@@ -7,8 +7,6 @@ NETLIFY https://serene-goldstine-4b101a.netlify.app/
 Sprint 3
 PULL REQUEST https://github.com/KirillGrom/middle.messenger.praktikum.yandex/pull/6
 
-
-Sprint 1
 ЗАПУСК ПРОЕКТА
 Клонировать проект c HTTPS
 git clone https://github.com/KirillGrom/middle.messenger.praktikum.yandex.git

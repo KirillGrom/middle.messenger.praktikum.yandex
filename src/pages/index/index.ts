@@ -17,9 +17,7 @@ export default class Index extends Block {
 			aside: new Aside({}),
 			main: new Main({
 				isEmpty: true,
-				contentHeader: '',
-				contentMain: '',
-				contentFooter: ''}),
+			}),
 		};
 		super('div', {components});
 	}

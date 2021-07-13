@@ -14,6 +14,7 @@ import get from '../../utils/get';
 import FormService from '../../modules/Form';
 import {Valid} from '../../utils/constants/valid';
 
+
 export default class Aside extends Block {
 	constructor(props: any) {
 		const modal = new Modal({

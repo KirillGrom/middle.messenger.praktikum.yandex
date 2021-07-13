@@ -17,8 +17,8 @@ export default {
 		return state;
 	},
 
-	currentChatId: (state: Record<string, any>, id: string) => {
-		state.currentChatId = id;
+	currentChat: (state: Record<string, any>, chat: Object) => {
+		state.currentChat = chat;
 		return state;
 	},
 

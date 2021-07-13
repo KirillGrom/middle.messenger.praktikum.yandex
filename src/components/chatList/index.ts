@@ -14,7 +14,7 @@ export default class ChatList extends Block {
 				click: (event: Event) => {
 					event.preventDefault();
 					try {
-						ChatController.chatItemHandler(prop.id);
+						ChatController.chatItemHandler(prop);
 					} catch (error) {}
 				},
 			}})),

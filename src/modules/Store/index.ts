@@ -13,7 +13,7 @@ class Store {
 			user: {},
 			chats: [],
 			chatToken: '',
-			currentChatId: '',
+			currentChat: {},
 			message: [],
 		};
 

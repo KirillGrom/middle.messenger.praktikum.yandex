@@ -19,7 +19,7 @@ class AuthController {
 		try {
 			const {status} = await AuthApi.singUp(data);
 			if (status === 200) {
-				router.go('/');
+				router.go('/login');
 			}
 		} catch (error) {
 			throw Error(error);

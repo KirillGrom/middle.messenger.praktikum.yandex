@@ -1,1 +1,1 @@
-export default (obj: Object, path: string) => path.split('.').reduce((obj, key) => obj[key], obj);
+export default <T>(obj: T, path: string) => path.split('.').reduce((obj:Record<string, any>, key) => obj[key], obj);

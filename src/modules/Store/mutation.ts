@@ -1,6 +1,6 @@
 import {TokenResponseType, UserType} from '../../controllers/auth/auth.type';
 import {ChatItemType} from '../../components/chatItem/chatItem.type';
-import {ChatResponseType} from "../../controllers/chat/chat.type";
+import {ChatMessageResponse} from '../../controllers/chat/chat.type';
 
 export default {
 	user: (state: Record<string, any>, payload: UserType) => {
@@ -18,12 +18,12 @@ export default {
 		return state;
 	},
 
-	currentChat: (state: Record<string, any>, chat: ChatResponseType) => {
+	currentChat: (state: Record<string, any>, chat: ChatItemType) => {
 		state.currentChat = chat;
 		return state;
 	},
 
-	message: (state: Record<string, any>, message: any) => {
+	message: (state: Record<string, any>, message: ChatMessageResponse[]) => {
 		state.message = [...state.message, ...message];
 		return state;
 	},

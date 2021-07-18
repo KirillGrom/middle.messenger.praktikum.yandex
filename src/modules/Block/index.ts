@@ -118,6 +118,7 @@ export default class Block implements IBlock {
 
 	componentDidMount(): void {}
 
+	// @ts-ignore
 	isPropsChanged<T>(oldProps: T, newProps: T): boolean {
 		return true;
 	}

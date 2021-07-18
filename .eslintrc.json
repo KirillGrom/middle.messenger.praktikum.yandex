@@ -3,7 +3,8 @@
   "extends": "xo",
   "rules": {
     "no-unused-vars": "off",
-    "max-params": [2, 3]
+    "max-params": [2, 3],
+    "camelcase": [2, {"properties": "never"}]
   },
   "globals": {
     "document": false,
@@ -16,6 +17,8 @@
     "Window": false,
     "History": false,
     "FormData": false,
-    "WebSocket": false
+    "WebSocket": false,
+    "it": false,
+    "describe":false
   }
 }

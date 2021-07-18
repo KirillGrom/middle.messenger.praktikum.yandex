@@ -7,17 +7,11 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 const stylesHandler = MiniCssExtractPlugin.loader;
 
-const config = {
+module.exports = {
 	entry: ['./src/index.ts', './src/style/index.scss'],
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: './js/[name].[contenthash].js',
-	},
-	devServer: {
-		open: true,
-		contentBase: path.resolve(__dirname, 'dist'),
-		compress: true,
-		port: 3000,
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
@@ -61,12 +55,3 @@ const config = {
 	},
 };
 
-module.exports = () => {
-	if (isProduction) {
-		config.mode = 'production';
-	} else {
-		config.mode = 'development';
-	}
-
-	return config;
-};

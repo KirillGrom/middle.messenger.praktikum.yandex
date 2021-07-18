@@ -6,8 +6,8 @@ NETLIFY https://serene-goldstine-4b101a.netlify.app/
 
 HEROKU https://msngr-yp.herokuapp.com/
 
-Sprint 3
-PULL REQUEST https://github.com/KirillGrom/middle.messenger.praktikum.yandex/pull/6
+Sprint 4
+PULL REQUEST https://github.com/KirillGrom/middle.messenger.praktikum.yandex/pull/15
 
 ЗАПУСК ПРОЕКТА
 Клонировать проект c HTTPS

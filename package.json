@@ -50,7 +50,7 @@
     "lint": "eslint --fix --ext .ts, --ignore-path .gitignore . && stylelint \"**/*.scss\" --fix  --config .stylelintrc.json",
     "test": "mocha",
     "watch": "webpack --watch",
-    "precommit:hook": "npm run lint && npm run test"
+    "precommit:hook": "npm run lint"
   },
   "repository": {
     "type": "git",

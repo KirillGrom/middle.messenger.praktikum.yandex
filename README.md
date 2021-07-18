@@ -4,6 +4,8 @@ UI проекта  https://www.figma.com/file/vDGdT1VRLSwmKMx7cTFX1m/ya-msg?node
 
 NETLIFY https://serene-goldstine-4b101a.netlify.app/
 
+HEROKU https://msngr-yp.herokuapp.com/
+
 Sprint 3
 PULL REQUEST https://github.com/KirillGrom/middle.messenger.praktikum.yandex/pull/6
 

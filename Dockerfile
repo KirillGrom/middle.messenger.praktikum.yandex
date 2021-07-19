@@ -1,5 +1,5 @@
-FROM ubuntu:18.04
-RUN apt update && apt install -y nodejs && apt install -y npm && npm install express
+FROM node:16.0
+RUN  npm install express
 WORKDIR /var/www
 COPY ./server.js server.js
 COPY ./dist ./dist

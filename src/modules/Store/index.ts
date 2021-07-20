@@ -2,9 +2,10 @@ import EventBus from '../EventBus';
 import {EventBusType} from '../../types/eventBus.type';
 import mutation from './mutation';
 import {EVENTS} from './events';
+import {StoreType} from './store.type';
 
 class Store {
-	private state: Object;
+	private state: StoreType | Object;
 	public eventBus: EventBusType;
 	public mutations: Record<string, Function>;
 

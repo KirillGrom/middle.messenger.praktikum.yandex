@@ -12,6 +12,7 @@
   &__time {
     display: block;
     text-align: right;
+
     @include font(12,12);
   }
 

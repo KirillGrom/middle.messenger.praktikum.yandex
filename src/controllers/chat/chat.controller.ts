@@ -16,6 +16,7 @@ import WebSocketModule from '../../modules/WebSocketModule';
 import validatorForm from '../../utils/validatorForm';
 import {loginRules, messageRules} from './validate.rules';
 import {Valid} from '../../utils/constants/valid';
+import {ChatItemType} from '../../components/chatItem/chatItem.type';
 
 const webSocketModule = new WebSocketModule();
 const loginValidator = validatorForm(loginRules);
@@ -57,7 +58,7 @@ class ChatController {
 		}
 	}
 
-	public async chatItemHandler(chat: ChatResponseType): Promise<void> {
+	public async chatItemHandler(chat: ChatItemType): Promise<void> {
 		if (router.getCurrentPathName() === '/') {
 			router.go('/chats');
 		}

@@ -1,9 +1,8 @@
 import {expect} from 'chai';
-import enrichUrl, {API_HOST} from './index';
+import enrichUrl from './index';
+import {API_HOST} from '../constants/API_HOST';
 
-// eslint-disable-next-line no-undef
 describe('Проверка формат URl', () => {
-	// eslint-disable-next-line no-undef
 	it('Склейка url', () => {
 		expect(enrichUrl('profile')).to.equal(`${API_HOST}profile`);
 	});

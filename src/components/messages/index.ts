@@ -7,11 +7,12 @@ import Store from '../../modules/Store';
 import get from '../../utils/get';
 import dateFormat from '../../utils/dateFormat';
 import {EVENTS} from '../../modules/Store/events';
+import {ChatMessageResponse} from '../../controllers/chat/chat.type';
 
 export default class Messages extends Block {
 	constructor(props: MessagesType) {
 		const components = {
-			messages: () => get(Store.getState(), 'message').map(data => {
+			messages: () => get(Store.getState(), 'message').map((data: ChatMessageResponse) => {
 				const currentUser = get(Store.getState(), 'user');
 				const isCurrentUser = currentUser.id === data.user_id;
 				const messages = new Message({

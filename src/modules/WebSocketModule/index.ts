@@ -37,7 +37,7 @@ export default class WebSocketModule {
 		this.oldMsg();
 	}
 
-	private close(event): void {
+	private close(event: any): void {
 		if (event.wasClean) {
 			console.log('Соединение закрыто чисто');
 		} else {
@@ -47,7 +47,7 @@ export default class WebSocketModule {
 		console.log(`Код: ${event.code} | Причина: ${event.reason}`);
 	}
 
-	private message(event): void {
+	private message(event: any): void {
 		console.log('Получены данные');
 		const data = JSON.parse(event.data);
 		if (Array.isArray(data)) {
@@ -57,7 +57,7 @@ export default class WebSocketModule {
 		}
 	}
 
-	private error(event): void {
+	private error(event: any): void {
 		console.log('Ошибка', event.message);
 	}
 

@@ -1,34 +1,35 @@
 import {TokenResponseType, UserType} from '../../controllers/auth/auth.type';
 import {ChatItemType} from '../../components/chatItem/chatItem.type';
-import {ChatResponseType} from "../../controllers/chat/chat.type";
+import {ChatMessageResponse} from '../../controllers/chat/chat.type';
+import {StoreType} from './store.type';
 
 export default {
-	user: (state: Record<string, any>, payload: UserType) => {
+	user: (state: StoreType, payload: UserType) => {
 		state.user = payload;
 		return state;
 	},
 
-	chats: (state: Record<string, any>, payload: ChatItemType) => {
+	chats: (state: StoreType, payload: ChatItemType[]) => {
 		state.chats = payload;
 		return state;
 	},
 
-	chatToken: (state: Record<string, any>, payload: TokenResponseType) => {
+	chatToken: (state: StoreType, payload: TokenResponseType) => {
 		state.chatToken = payload.token;
 		return state;
 	},
 
-	currentChat: (state: Record<string, any>, chat: ChatResponseType) => {
+	currentChat: (state: StoreType, chat: ChatItemType) => {
 		state.currentChat = chat;
 		return state;
 	},
 
-	message: (state: Record<string, any>, message: any) => {
+	message: (state: StoreType, message: ChatMessageResponse[]) => {
 		state.message = [...state.message, ...message];
 		return state;
 	},
 
-	clearMessage: (state: Record<string, any>) => {
+	clearMessage: (state: StoreType) => {
 		state.message = [];
 		return state;
 	},

@@ -3,6 +3,7 @@ import {v4 as makeUUID} from 'uuid';
 import EventBus from '../EventBus';
 import {BlockType, IBlock} from '../../types/block.type';
 import {EventBusType} from '../../types/eventBus.type';
+import isEqual from '../../utils/isEqual';
 
 export type metaType = {
 	tagName: string;
@@ -119,7 +120,7 @@ export default class Block implements IBlock {
 	componentDidMount(): void {}
 
 	isPropsChanged<T>(oldProps: T, newProps: T): boolean {
-		return true;
+		return !isEqual(oldProps, newProps);
 	}
 
 	setProps = (nextProps: Object): void => {

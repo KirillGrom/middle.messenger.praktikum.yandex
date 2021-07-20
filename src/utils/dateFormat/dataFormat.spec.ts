@@ -1,9 +1,7 @@
 import {expect} from 'chai';
 import dateFormat from './index';
 
-// eslint-disable-next-line no-undef
 describe('Проверка формат дата ', () => {
-	// eslint-disable-next-line no-undef
 	it('Возврат времени', () => {
 		expect(dateFormat('2021-07-08T14:05:52+00:00')).to.equal('17:5');
 	});
